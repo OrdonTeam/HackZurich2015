@@ -30,6 +30,7 @@ script:
 
 after_script:
   - adb logcat -d
+  - test "$TRAVIS_BRANCH" == "master" && ./gradlew :mobile:publishApkRelease
 
 notifications:
   slack: hackzurich2015:PQ7SbDFhSRDMK4pjptQqknQI

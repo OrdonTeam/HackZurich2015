@@ -13,8 +13,7 @@ import com.google.android.gms.wearable.DataMapItem;
 import com.google.android.gms.wearable.Wearable;
 
 
-public class QuestionWearActivity extends WearableActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, DataApi.DataListener {
-
+public class QuestionWearActivity extends WearableActivity{
     private GoogleApiClient googleApiClient;
 
     @Override
@@ -22,50 +21,9 @@ public class QuestionWearActivity extends WearableActivity implements GoogleApiC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.question_wear_activity);
 
-        googleApiClient = new GoogleApiClient.Builder(this)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(Wearable.API)
-                .build();
-
-        googleApiClient.connect();
+        new SyncService(this).sync();
 
     }
 
-    @Override
-    public void onConnected(Bundle bundle) {
 
-        Wearable.DataApi.addListener(googleApiClient, this);
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-
-    }
-
-    @Override
-    public void onDataChanged(DataEventBuffer dataEvents) {
-
-        for (DataEvent event: dataEvents) {
-
-            Log.d("[DEBUG] onDataChanged",
-                    "Event received: " + event.getDataItem().getUri());
-
-            String eventUri = event.getDataItem().getUri().toString();
-
-            if (eventUri.contains ("/myapp/myevent")) {
-
-                DataMapItem dataItem = DataMapItem.fromDataItem (event.getDataItem());
-                String[] data = dataItem.getDataMap().getStringArray("contents");
-
-                Log.d("[DEBUG] Dev", "Sending timeline to the listener + " + data);
-
-            }
-        }
-    }
-
-    @Override
-    public void onConnectionFailed(ConnectionResult connectionResult) {
-
-    }
 }

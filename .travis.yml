@@ -5,16 +5,6 @@ language: android
 env:
   - ADB_INSTALL_TIMEOUT=8
 
-android:
-  components:
-    - tools
-    - platform-tools
-    - build-tools-23.0.1
-    - android-23
-    - extra-android-m2repository
-    - extra-google-m2repository
-    - sys-img-armeabi-v7a-android-21
-
 before_install:
   - openssl aes-256-cbc -d -a -k "$encription_password" -in mobile/gradle.properties.enc -out mobile/gradle.properties
   - openssl aes-256-cbc -d -a -k "$encription_password" -in mobile/hackzurich2015.p12.enc -out mobile/hackzurich2015.p12

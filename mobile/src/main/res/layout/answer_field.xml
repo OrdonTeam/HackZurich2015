@@ -8,7 +8,7 @@
     <TextView
         android:id="@+id/answerMarkTextView"
         android:text="A."
-        android:layout_width="0"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:textSize="24sp"/>
@@ -17,7 +17,7 @@
     <TextView
         android:id="@+id/answerSentenceTextView"
         android:text="Here is my answer"
-        android:layout_width="0"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="5"
         android:textSize="24sp"/>

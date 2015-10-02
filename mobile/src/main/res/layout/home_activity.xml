@@ -19,7 +19,8 @@
         android:text="Download quiz"/>
 
     <Button
-        android:text="Button"
+        android:text="Learn"
+        android:id="@+id/learn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 

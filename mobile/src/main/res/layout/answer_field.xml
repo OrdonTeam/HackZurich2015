@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/answerField"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/answerMarkTextView"
+        android:text="A."
+        android:layout_width="0"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:textSize="24sp"/>
+
+
+    <TextView
+        android:id="@+id/answerSentenceTextView"
+        android:text="Here is my answer"
+        android:layout_width="0"
+        android:layout_height="match_parent"
+        android:layout_weight="5"
+        android:textSize="24sp"/>
+
+</LinearLayout>

@@ -2,9 +2,6 @@ sudo: false
 
 language: android
 
-env:
-  - ADB_INSTALL_TIMEOUT=8
-
 android:
   components:
     - tools

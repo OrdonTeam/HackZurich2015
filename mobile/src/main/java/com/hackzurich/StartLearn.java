@@ -59,14 +59,27 @@ public final class StartLearn extends Activity {
 
     @OnClick(R.id.start_learn)
     public void onLearn() {
-        List<QuestionDataStatus> questionsTypes = new ArrayList<>();
+        List<QuestionDataStatus> questionsTypes = addSelectedTypes();
         LearnActivity.start(this, testWrapper, questionsTypes);
     }
-
 
     public static void start(Context context, TestWrapper test) {
         Intent intent = new Intent(context, StartLearn.class);
         intent.putExtra(TEST_KEY, test);
         context.startActivity(intent);
+    }
+
+    private List<QuestionDataStatus> addSelectedTypes() {
+        List<QuestionDataStatus> questionsTypes = new ArrayList<>();
+        if(easyView.isSelected()) {
+            questionsTypes.add(QuestionDataStatus.EASY);
+        }
+        if(mediumView.isSelected()) {
+            questionsTypes.add(QuestionDataStatus.MEDIUM);
+        }
+        if(hardView.isSelected()) {
+            questionsTypes.add(QuestionDataStatus.HARD);
+        }
+        return questionsTypes;
     }
 }

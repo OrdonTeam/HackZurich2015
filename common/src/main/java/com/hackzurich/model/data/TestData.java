@@ -4,7 +4,9 @@ import com.hackzurich.model.Question;
 import com.hackzurich.model.Test;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public final class TestData implements Serializable {
@@ -36,5 +38,16 @@ public final class TestData implements Serializable {
 
     public String getTestId() {
         return testId;
+    }
+
+    public List<String> getQuestionsIdsInTypes(List<QuestionDataStatus> questionsTypes) {
+        List<String> ids = new ArrayList<>();
+
+        for (Map.Entry<String, QuestionData> entry : dataMap.entrySet()) {
+            if(questionsTypes.contains(entry.getValue().getStatus())){
+                ids.add(entry.getKey());
+            }
+        }
+        return ids;
     }
 }

@@ -20,4 +20,13 @@ public final class Test implements Serializable {
     public String getId() {
         return id;
     }
+
+    public Question getQuestionsWithId(String questionId) {
+        for(Question question : questions) {
+            if(question.getId().equals(questionId)) {
+                return question;
+            }
+        }
+        throw new RuntimeException("Question with id " + questionId + " not found");
+    }
 }

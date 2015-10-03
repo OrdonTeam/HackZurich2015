@@ -22,10 +22,17 @@ public final class TestWrapper implements Serializable {
     }
 
     public void addData(String questionId, boolean wasCorrect) {
-        testData.addData(questionId,wasCorrect);
+        testData.addData(questionId, wasCorrect);
     }
 
     public Question getRandomQuestionFor(List<QuestionDataStatus> questionsTypes) {
-        return test.getQuestions().get(random.nextInt() % test.getQuestions().size());
+        List<String> ids = testData.getQuestionsIdsInTypes(questionsTypes);
+        int questionIndex = generateRandomQuestionIndex(ids.size());
+        String questionId = ids.get(questionIndex);
+        return test.getQuestionsWithId(questionId);
+    }
+
+    private int generateRandomQuestionIndex(int size) {
+        return new Random().nextInt(size);
     }
 }

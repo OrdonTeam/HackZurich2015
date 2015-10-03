@@ -8,7 +8,11 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.hackzurich.model.TestWrapper;
+import com.hackzurich.model.data.QuestionDataStatus;
 import com.hackzurich.model.data.TestData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -52,6 +56,13 @@ public final class StartLearn extends Activity {
     public void onEasy(View view) {
         view.setSelected(!view.isSelected());
     }
+
+    @OnClick(R.id.start_learn)
+    public void onLearn() {
+        List<QuestionDataStatus> questionsTypes = new ArrayList<>();
+        LearnActivity.start(this, testWrapper, questionsTypes);
+    }
+
 
     public static void start(Context context, TestWrapper test) {
         Intent intent = new Intent(context, StartLearn.class);

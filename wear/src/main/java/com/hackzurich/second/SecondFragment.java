@@ -11,7 +11,6 @@ import android.widget.ViewFlipper;
 import com.hackzurich.R;
 import com.hackzurich.model.Question;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public final class SecondFragment extends CardFragment {
@@ -41,18 +40,8 @@ public final class SecondFragment extends CardFragment {
     }
 
     private void findViews() {
-        final int[] answerIds = {R.id.answer1, R.id.answer2, R.id.answer3, R.id.answer4, R.id.answer5, R.id.answer6, R.id.answer7};
-        List<View>answerViews = new ArrayList<>();
-        for (int i = 0; i < question.getAnswers().size(); i++) {
-            answerViews.add(getView().findViewById(answerIds[i]));
-        }
-        this.answerViews = answerViews;
-        List<TextView> answerTextViews = new ArrayList<>();
-        final int[] answerTextIds = {R.id.answerText1, R.id.answerText2, R.id.answerText3, R.id.answerText4, R.id.answerText5, R.id.answerText6, R.id.answerText7};
-        for (int i = 0; i < question.getAnswers().size(); i++) {
-            answerTextViews.add((TextView) getView().findViewById(answerTextIds[i]));
-        }
-        this.answerTextViews = answerTextViews;
+        answerViews = SecondFragmentInjector.getAnswerViews(getView());
+        answerTextViews = SecondFragmentInjector.getAnswerTextViews(getView());
     }
 
     private void initQuestions() {

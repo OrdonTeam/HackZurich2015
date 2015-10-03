@@ -48,14 +48,14 @@ public final class SecondFragment extends CardFragment {
         view.findViewById(R.id.doNotKnowButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                submitted = true;
+                submit();
                 invalidate();
             }
         });
         view.findViewById(R.id.confirmAnswerButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                submitted = true;
+                submit();
                 invalidate();
             }
         });
@@ -111,6 +111,13 @@ public final class SecondFragment extends CardFragment {
                     answerView.setBackgroundResource(R.drawable.green_button_background);
                 }
             }
+        }
+    }
+
+    private void submit() {
+        submitted = true;
+        for (View answerView : answerViews) {
+            answerView.setEnabled(false);
         }
     }
 

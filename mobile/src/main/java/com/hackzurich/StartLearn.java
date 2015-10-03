@@ -78,7 +78,7 @@ public final class StartLearn extends Activity {
             count += testData.countOf(EASY);
         }
         if (mediumView.isSelected()) {
-            count += testData.countOf(EASY);
+            count += testData.countOf(MEDIUM);
         }
         if (hardView.isSelected()) {
             count += testData.countOf(HARD);

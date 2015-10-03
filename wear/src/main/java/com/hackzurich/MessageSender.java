@@ -56,6 +56,7 @@ public class MessageSender {
         });
     }
 
+    @Deprecated
     public static void sendRequest(Context context, final Question question) {
         new MessageSender(context).connect().subscribe(new Action1<MessageSender>() {
             @Override
@@ -71,10 +72,35 @@ public class MessageSender {
         });
     }
 
+    @Deprecated
     private void sendImpl(Question question) {
         byte[] bytes = question.toByteArray();
         PutDataMapRequest dataMap = PutDataMapRequest.create(EventMetadata.MOBILE_EVENT_PATH);
         dataMap.getDataMap().putByteArray(EventMetadata.CONTENTS, bytes);
+        dataMap.getDataMap().putDouble(EventMetadata.TIMESTAMP, System.currentTimeMillis());
+        PutDataRequest request = dataMap.asPutDataRequest();
+        Wearable.DataApi.putDataItem(googleApiClient, request);
+    }
+
+    public static void sendRequest(Context context, final String questionId, final boolean wasCorrect) {
+        new MessageSender(context).connect().subscribe(new Action1<MessageSender>() {
+            @Override
+            public void call(MessageSender messageSender) {
+                messageSender.sendImpl(questionId, wasCorrect);
+                messageSender.googleApiClient.disconnect();
+            }
+        }, new Action1<Throwable>() {
+            @Override
+            public void call(Throwable throwable) {
+                Log.e("kasper", "sth goes wrong" + throwable.getMessage());
+            }
+        });
+    }
+
+    private void sendImpl(String questionId, final boolean wasCorrect) {
+        PutDataMapRequest dataMap = PutDataMapRequest.create(EventMetadata.MOBILE_EVENT_PATH);
+        dataMap.getDataMap().putString(EventMetadata.QUESTION_ID, questionId);
+        dataMap.getDataMap().putBoolean(EventMetadata.WAS_CORRECT, wasCorrect);
         dataMap.getDataMap().putDouble(EventMetadata.TIMESTAMP, System.currentTimeMillis());
         PutDataRequest request = dataMap.asPutDataRequest();
         Wearable.DataApi.putDataItem(googleApiClient, request);

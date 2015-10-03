@@ -9,9 +9,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
+import com.hackzurich.MessageSender;
 import com.hackzurich.R;
 import com.hackzurich.model.Answer;
 import com.hackzurich.model.Question;
+import com.hackzurich.model.stub.TestFactory;
 
 import java.util.List;
 
@@ -119,6 +121,19 @@ public final class SecondFragment extends CardFragment {
         for (View answerView : answerViews) {
             answerView.setEnabled(false);
         }
+        MessageSender.sendRequest(getActivity(), question.getId(), wasCorrect());
+    }
+
+    private boolean wasCorrect() {
+        List<Answer> answers = question.getAnswers();
+        for (int i = 0; i < answers.size(); i++) {
+            Answer answer = answers.get(i);
+            View answerView = answerViews.get(i);
+            if(answer.isCorrect() != answerView.isSelected()){
+                return false;
+            }
+        }
+        return true;
     }
 
     private void setFlipper() {

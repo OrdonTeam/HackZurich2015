@@ -5,7 +5,7 @@ import android.support.wearable.activity.WearableActivity;
 
 import com.hackzurich.model.stub.TestFactory;
 
-
+@Deprecated
 public class QuestionWearActivity extends WearableActivity {
 
     @Override

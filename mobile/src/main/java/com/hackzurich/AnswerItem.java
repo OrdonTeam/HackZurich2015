@@ -23,7 +23,7 @@ public class AnswerItem {
         setOnClickListener(view);
         setAnswerItemSentence(view);
         setAnswerItemMark(view, position);
-        setBackgroundColor(view);
+        setBackgroundColor(view.findViewById(R.id.answerField));
     }
 
     private void setOnClickListener(View view) {
@@ -31,7 +31,7 @@ public class AnswerItem {
             @Override
             public void onClick(View view) {
                 choosen = !choosen;
-                setBackgroundColor(view);
+                setBackgroundColor(view.findViewById(R.id.answerField));
             }
         });
     }
@@ -39,26 +39,26 @@ public class AnswerItem {
     public void setBackgroundColor(View view) {
 
         if(choosen) {
-            view.setBackgroundResource(R.color.blue);
+            view.setBackgroundResource(R.drawable.blue_button_background);
 
             if(submitted) {
                 if(answer.isCorrect()) {
-                    view.setBackgroundResource(R.color.green);
+                    view.setBackgroundResource(R.drawable.green_button_background);
                 }
                 else {
-                    view.setBackgroundResource(R.color.red);
+                    view.setBackgroundResource(R.drawable.red_button_background);
                 }
             }
         }
         else {
-            view.setBackgroundResource(R.color.white);
+            view.setBackgroundResource(R.drawable.grey_button_background);
 
             if (submitted) {
                 if (answer.isCorrect()) {
-                    view.setBackgroundResource(R.color.green);
+                    view.setBackgroundResource(R.drawable.green_button_background);
                 }
                 else {
-                    view.setBackgroundResource(R.color.red);
+                    view.setBackgroundResource(R.drawable.red_button_background);
                 }
             }
         }

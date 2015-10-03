@@ -1,25 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/answerField"
-    android:orientation="horizontal"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/answerMarkTextView"
-        android:text="A."
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:textSize="24sp"/>
+    <LinearLayout
+        android:id="@+id/answerField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/very_small_margin"
+        android:padding="@dimen/small_margin"
+        android:orientation="horizontal">
 
+        <TextView
+            android:id="@+id/answerMarkTextView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="24sp"
+            tools:text="A."/>
 
-    <TextView
-        android:id="@+id/answerSentenceTextView"
-        android:text="Here is my answer"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="5"
-        android:textSize="24sp"/>
+        <TextView
+            android:id="@+id/answerSentenceTextView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:textSize="24sp"
+            tools:text="Here is my answer"/>
 
-</LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>

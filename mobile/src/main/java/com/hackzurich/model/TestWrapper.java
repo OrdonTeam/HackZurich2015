@@ -12,4 +12,8 @@ public final class TestWrapper implements Serializable {
         this.test = test;
         this.testData = testData;
     }
+
+    public TestData getTestData() {
+        return testData;
+    }
 }

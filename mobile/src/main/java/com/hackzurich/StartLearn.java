@@ -4,9 +4,17 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.widget.TextView;
 
 import com.hackzurich.model.TestWrapper;
+import com.hackzurich.model.data.TestData;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
+import static com.hackzurich.model.data.QuestionDataStatus.EASY;
+import static com.hackzurich.model.data.QuestionDataStatus.HARD;
+import static com.hackzurich.model.data.QuestionDataStatus.MEDIUM;
 
 public final class StartLearn extends Activity {
 
@@ -14,17 +22,28 @@ public final class StartLearn extends Activity {
 
     private TestWrapper testWrapper;
 
+    @Bind(R.id.easy)
+    TextView easyView;
+    @Bind(R.id.medium)
+    TextView mediumView;
+    @Bind(R.id.hard)
+    TextView hardView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.start_learn_activity);
-        testWrapper = getIntent().getParcelableExtra(TEST_KEY);
+        ButterKnife.bind(this);
+        testWrapper = (TestWrapper) getIntent().getSerializableExtra(TEST_KEY);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.e("test", testWrapper.toString());
+        TestData testData = testWrapper.getTestData();
+        hardView.setText("Easy (" + testData.countOf(EASY) + ")");
+        hardView.setText("Medium (" + testData.countOf(MEDIUM) + ")");
+        hardView.setText("Hard (" + testData.countOf(HARD) + ")");
     }
 
     public static void start(Context context, TestWrapper test) {

@@ -4,10 +4,11 @@ import com.hackzurich.model.Question;
 import com.hackzurich.model.Test;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.Map;
 
 public final class TestData implements Serializable {
-    Map<String, QuestionData> dataMap;
+    Map<String, QuestionData> dataMap = new HashMap<>();
 
     public TestData(Test test) {
         for (Question question : test.getQuestions()) {

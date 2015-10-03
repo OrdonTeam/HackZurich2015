@@ -23,8 +23,12 @@ public final class TestFactory {
 
     private static List<Question> newQuestions() {
         List<Question> questions = new ArrayList<>();
-        questions.add(new Question("1", "What colour is mars", newAnswers()));
+        questions.add(newQuestion());
         return questions;
+    }
+
+    public static Question newQuestion() {
+        return new Question("1", "What colour is mars", newAnswers());
     }
 
     private static List<Answer> newAnswers() {

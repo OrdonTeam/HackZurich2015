@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:textAppearanceMedium"
             android:gravity="center"
-            android:text="Now I wanna to learn:"/>
+            android:text="Now I wanna learn:"/>
 
         <Spinner
             android:id="@+id/databaseChooseSpinner"

@@ -48,8 +48,6 @@ public class AnswerItem {
             if (submitted) {
                 if (answer.isCorrect()) {
                     view.setBackgroundResource(R.drawable.green_button_background);
-                } else {
-                    view.setBackgroundResource(R.drawable.red_button_background);
                 }
             }
         }

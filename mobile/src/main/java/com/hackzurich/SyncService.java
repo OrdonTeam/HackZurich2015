@@ -16,6 +16,7 @@ public class SyncService implements GoogleApiClient.ConnectionCallbacks, GoogleA
 
 
     private GoogleApiClient googleApiClient;
+    private DataApi.DataListener dataListener;
 
     public SyncService(Context context) {
         googleApiClient = new GoogleApiClient.Builder(context)
@@ -30,18 +31,23 @@ public class SyncService implements GoogleApiClient.ConnectionCallbacks, GoogleA
     }
 
     public void onPause(){
+        if(googleApiClient.isConnected()) {
+            Wearable.DataApi.removeListener(googleApiClient, dataListener);
+        }
         googleApiClient.disconnect();
+
     }
 
     @Override
     public void onConnected(Bundle bundle) {
         sendRequest();
-        Wearable.DataApi.addListener(googleApiClient, new DataApi.DataListener() {
+        dataListener = new DataApi.DataListener() {
             @Override
             public void onDataChanged(DataEventBuffer dataEventBuffer) {
-                Log.e("kasper","nowa wiadomosc" + dataEventBuffer.toString());
+                Log.e("kasper", "nowa wiadomosc" + dataEventBuffer.toString());
             }
-        });
+        };
+        Wearable.DataApi.addListener(googleApiClient, dataListener);
         Log.e("kasper", "success");
     }
 

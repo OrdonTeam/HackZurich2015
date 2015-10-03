@@ -26,6 +26,7 @@ public class QuestionActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setResult(RESULT_CANCELED);
         setContentView(R.layout.question_activity);
         ButterKnife.bind(this);
         setAdapter();
@@ -47,6 +48,12 @@ public class QuestionActivity extends Activity {
     @OnClick(R.id.doNotKnowButton)
     public void doNotKnowButtonClicked() {
 
+    }
+
+    @OnClick(R.id.next)
+    public void onNext() {
+        setResult(RESULT_OK);
+        finish();
     }
 
     public static Intent getIntent(Context context, Question question) {

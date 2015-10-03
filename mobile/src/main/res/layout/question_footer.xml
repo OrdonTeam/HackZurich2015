@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ViewFlipper android:id="@+id/answerButtonViewFlipper"
-             xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<ViewFlipper xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/answerButtonViewFlipper"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="16dp">
 
     <Button
         android:id="@+id/doNotKnowButton"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="@dimen/very_small_margin"
         android:background="@drawable/selectable_button_background"
-        android:text="I have no foggiest idea..."/>
+        android:text="I have no foggiest idea..." />
 
     <Button
         android:id="@+id/confirmAnswerButton"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="@dimen/very_small_margin"
         android:background="@drawable/selectable_button_background"
-        android:text="Done! Check my answers!"/>
+        android:text="Done! Check my answers!" />
 
     <Button
         android:id="@+id/nextButton"
@@ -26,5 +27,5 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/very_small_margin"
         android:background="@drawable/selectable_button_background"
-        android:text="Next question, please!"/>
+        android:text="Next question, please!" />
 </ViewFlipper>

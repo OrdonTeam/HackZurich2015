@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import com.hackzurich.adapter.AnswerGroupAdapter;
@@ -28,17 +29,21 @@ public class QuestionActivity extends Activity {
     @Bind(R.id.answerListView)
     ListView answerListView;
 
+    @Bind(R.id.questionSentenceTextView)
+    TextView questionTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setResult(RESULT_CANCELED);
         setContentView(R.layout.question_activity);
         ButterKnife.bind(this);
+        question = (Question) getIntent().getSerializableExtra(QUESTION);
         setAdapter();
+        questionTextView.setText(question.getText());
     }
 
     private void setAdapter() {
-        question = (Question) getIntent().getSerializableExtra(QUESTION);
         for (Answer answer : question.getAnswers()) {
             answerGroupAdapter.addAnswerItem(new AnswerItem(answer));
         }

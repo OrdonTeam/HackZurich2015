@@ -4,7 +4,10 @@
     <color name="blue">#4fa7e6</color>
     <color name="blue_pressed">#2f87c6</color>
     <color name="red">#d82a2a</color>
-    <color name="green">#9edc3a</color>
+    <color name="green">#13ac37</color>
     <color name="grey">#bbbbbb</color>
     <color name="grey_pressed">#999999</color>
+    <color name="next_green">#cedc3a</color>
+    <color name="next_green_pressed">#cebc3a</color>
+    <color name="next_green_inactive">#decc4a</color>
 </resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="false">
+        <shape>
+            <corners
+                android:radius="@dimen/normal_button_radius"/>
+            <solid android:color="@color/next_green_inactive"/>
+        </shape>
+    </item>
+    <item>
+        <ripple android:color="@color/next_green_pressed">
+            <item>
+                <shape>
+                    <corners
+                        android:radius="@dimen/normal_button_radius"/>
+                    <solid android:color="@color/next_green"/>
+                </shape>
+            </item>
+        </ripple>
+    </item>
+</selector>

@@ -42,6 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/small_margin"
-        android:background="@drawable/selectable_button_background"
+        android:background="@drawable/button_next_background"
+        android:enabled="false"
         android:text="Go"/>
 </LinearLayout>

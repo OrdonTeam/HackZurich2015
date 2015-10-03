@@ -34,6 +34,8 @@ public final class StartLearn extends Activity {
     TextView mediumView;
     @Bind(R.id.hard)
     TextView hardView;
+    @Bind(R.id.start_learn)
+    View startLearnView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,11 @@ public final class StartLearn extends Activity {
     @OnClick({R.id.easy, R.id.medium, R.id.hard})
     public void onEasy(View view) {
         view.setSelected(!view.isSelected());
+        startLearnView.setEnabled(isAtLeastOneQuestion());
+    }
+
+    private boolean isAtLeastOneQuestion() {
+        return countSelectedQuestion() > 0;
     }
 
     @OnClick(R.id.start_learn)
@@ -64,15 +71,30 @@ public final class StartLearn extends Activity {
         finish();
     }
 
+    private int countSelectedQuestion() {
+        TestData testData = testWrapper.getTestData();
+        int count = 0;
+        if (easyView.isSelected()) {
+            count += testData.countOf(EASY);
+        }
+        if (mediumView.isSelected()) {
+            count += testData.countOf(EASY);
+        }
+        if (hardView.isSelected()) {
+            count += testData.countOf(HARD);
+        }
+        return count;
+    }
+
     private List<QuestionDataStatus> addSelectedTypes() {
         List<QuestionDataStatus> questionsTypes = new ArrayList<>();
-        if(easyView.isSelected()) {
+        if (easyView.isSelected()) {
             questionsTypes.add(QuestionDataStatus.EASY);
         }
-        if(mediumView.isSelected()) {
+        if (mediumView.isSelected()) {
             questionsTypes.add(QuestionDataStatus.MEDIUM);
         }
-        if(hardView.isSelected()) {
+        if (hardView.isSelected()) {
             questionsTypes.add(QuestionDataStatus.HARD);
         }
         return questionsTypes;

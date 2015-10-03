@@ -11,23 +11,36 @@
     android:padding="@dimen/activity_margin">
 
     <TextView
-        android:text="Choose question types"
-        android:textAppearance="?android:textAppearanceLarge"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="Choose question types"
+        android:textAppearance="?android:textAppearanceLarge"/>
 
     <Button
         android:id="@+id/easy"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/small_margin"
+        android:background="@drawable/selectable_button_background"/>
 
     <Button
         android:id="@+id/medium"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/small_margin"
+        android:background="@drawable/selectable_button_background"/>
 
     <Button
         android:id="@+id/hard"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/small_margin"
+        android:background="@drawable/selectable_button_background"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/small_margin"
+        android:background="@drawable/selectable_button_background"
+        android:text="Go"/>
 </LinearLayout>

@@ -11,9 +11,10 @@ import com.google.android.gms.wearable.DataEventBuffer;
 import com.google.android.gms.wearable.PutDataMapRequest;
 import com.google.android.gms.wearable.PutDataRequest;
 import com.google.android.gms.wearable.Wearable;
+import com.hackzurich.model.communication.EventMetadata;
+import com.hackzurich.model.stub.TestFactory;
 
 public class SyncService implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
-
 
     private GoogleApiClient googleApiClient;
     private DataApi.DataListener dataListener;
@@ -30,8 +31,8 @@ public class SyncService implements GoogleApiClient.ConnectionCallbacks, GoogleA
         googleApiClient.connect();
     }
 
-    public void onPause(){
-        if(googleApiClient.isConnected()) {
+    public void onPause() {
+        if (googleApiClient.isConnected()) {
             Wearable.DataApi.removeListener(googleApiClient, dataListener);
         }
         googleApiClient.disconnect();
@@ -52,10 +53,10 @@ public class SyncService implements GoogleApiClient.ConnectionCallbacks, GoogleA
     }
 
     private void sendRequest() {
-        String[] contents = new String[]{"data1", "data2", "data3"};
-        PutDataMapRequest dataMap = PutDataMapRequest.create("/myapp/myevent/wear");
-        dataMap.getDataMap().putStringArray("contents", contents);
-        dataMap.getDataMap().putDouble("timestamp", System.currentTimeMillis());
+        PutDataMapRequest dataMap = PutDataMapRequest.create(EventMetadata.WEAR_EVENT_PATH);
+        byte[] bytes = TestFactory.newQuestion().toByteArray();
+        dataMap.getDataMap().putByteArray(EventMetadata.CONTENTS, bytes);
+        dataMap.getDataMap().putDouble(EventMetadata.TIMESTAMP, System.currentTimeMillis());
         PutDataRequest request = dataMap.asPutDataRequest();
         Wearable.DataApi.putDataItem(googleApiClient, request);
     }
@@ -63,7 +64,6 @@ public class SyncService implements GoogleApiClient.ConnectionCallbacks, GoogleA
     @Override
     public void onConnectionSuspended(int i) {
         Log.e("kasper", "suspended");
-
     }
 
     @Override

@@ -18,4 +18,5 @@ public final class Answer implements Serializable {
     public boolean isCorrect() {
         return correct;
     }
+
 }

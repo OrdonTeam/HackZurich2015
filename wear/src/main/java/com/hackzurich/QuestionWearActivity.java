@@ -8,6 +8,8 @@ import android.util.Log;
 import com.google.android.gms.wearable.DataEvent;
 import com.google.android.gms.wearable.DataEventBuffer;
 import com.google.android.gms.wearable.DataMapItem;
+import com.hackzurich.model.Question;
+import com.hackzurich.model.communication.EventMetadata;
 
 import rx.Subscription;
 import rx.functions.Action1;
@@ -25,7 +27,7 @@ public class QuestionWearActivity extends WearableActivity {
 
     private void subscribeToNewEvents() {
         subscription = googleObservableWrapper
-                .eventsEmitter()
+                .emitEvents()
                 .subscribe(onSuccess(), onError());
     }
 
@@ -68,13 +70,14 @@ public class QuestionWearActivity extends WearableActivity {
 
     private void onDataEventBufferReceived(DataEventBuffer dataEvents) {
         for (DataEvent event : dataEvents) {
-            Log.d("[DEBUG] onDataChanged", "Event received: " + event.getDataItem().getUri());
+            Log.d("kasper", "Event received: " + event.getDataItem().getUri());
             String eventUri = event.getDataItem().getUri().toString();
 
-            if (eventUri.contains("/myapp/myevent/wear")) {
+            if (eventUri.contains(EventMetadata.WEAR_EVENT_PATH)) {
                 DataMapItem dataItem = DataMapItem.fromDataItem(event.getDataItem());
-                String[] data = dataItem.getDataMap().getStringArray("contents");
-                Log.d("[DEBUG] Dev", "Sending timeline to the listener + " + data);
+                byte[] data = dataItem.getDataMap().getByteArray(EventMetadata.CONTENTS);
+                Question question = Question.fromBytes(data);
+                Log.d("kasper", "watch has receive a question + " + question);
                 googleObservableWrapper.sendRequest();
             }
         }

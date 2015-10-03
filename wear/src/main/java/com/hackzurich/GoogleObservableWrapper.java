@@ -11,6 +11,8 @@ import com.google.android.gms.wearable.DataEventBuffer;
 import com.google.android.gms.wearable.PutDataMapRequest;
 import com.google.android.gms.wearable.PutDataRequest;
 import com.google.android.gms.wearable.Wearable;
+import com.hackzurich.model.communication.EventMetadata;
+import com.hackzurich.model.stub.TestFactory;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -27,7 +29,7 @@ public class GoogleObservableWrapper {
         this.context = context;
     }
 
-    Observable<DataEventBuffer> eventsEmitter() {
+    Observable<DataEventBuffer> emitEvents() {
         return client(context).flatMap(new Func1<Bundle, Observable<DataEventBuffer>>() {
             @Override
             public Observable<DataEventBuffer> call(Bundle bundle) {
@@ -44,11 +46,10 @@ public class GoogleObservableWrapper {
     }
 
     public void sendRequest() {
-        String[] contents = new String[]{"dat41", "data52", "data63"};
-
-        PutDataMapRequest dataMap = PutDataMapRequest.create("/myapp/myevent/app");
-        dataMap.getDataMap().putStringArray("contents", contents);
-        dataMap.getDataMap().putDouble("timestamp", System.currentTimeMillis());
+        byte[] bytes = TestFactory.newQuestion().toByteArray();
+        PutDataMapRequest dataMap = PutDataMapRequest.create(EventMetadata.MOBILE_EVENT_PATH);
+        dataMap.getDataMap().putByteArray(EventMetadata.CONTENTS, bytes);
+        dataMap.getDataMap().putDouble(EventMetadata.TIMESTAMP, System.currentTimeMillis());
         PutDataRequest request = dataMap.asPutDataRequest();
         Wearable.DataApi.putDataItem(googleApiClient, request);
     }

@@ -5,9 +5,6 @@ import android.widget.TextView;
 
 import com.hackzurich.model.Answer;
 
-/**
- * Created by karola on 03.10.15.
- */
 public class AnswerItem {
     private static final int ASCII_CODE_FOR_UP_CASE = 65;
 
@@ -37,27 +34,21 @@ public class AnswerItem {
     }
 
     public void setBackgroundColor(View view) {
-
-        if(choosen) {
+        if (choosen) {
             view.setBackgroundResource(R.drawable.blue_button_background);
-
-            if(submitted) {
-                if(answer.isCorrect()) {
-                    view.setBackgroundResource(R.drawable.green_button_background);
-                }
-                else {
-                    view.setBackgroundResource(R.drawable.red_button_background);
-                }
-            }
-        }
-        else {
-            view.setBackgroundResource(R.drawable.grey_button_background);
-
             if (submitted) {
                 if (answer.isCorrect()) {
                     view.setBackgroundResource(R.drawable.green_button_background);
+                } else {
+                    view.setBackgroundResource(R.drawable.red_button_background);
                 }
-                else {
+            }
+        } else {
+            view.setBackgroundResource(R.drawable.grey_button_background);
+            if (submitted) {
+                if (answer.isCorrect()) {
+                    view.setBackgroundResource(R.drawable.green_button_background);
+                } else {
                     view.setBackgroundResource(R.drawable.red_button_background);
                 }
             }

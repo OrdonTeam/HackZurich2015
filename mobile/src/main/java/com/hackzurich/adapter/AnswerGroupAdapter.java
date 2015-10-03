@@ -58,7 +58,7 @@ public class AnswerGroupAdapter extends BaseAdapter {
 
     public void setSubmitted() {
         for (AnswerItem answerItem : answerGroup) {
-            answerItem.setSubmitted(true);
+            answerItem.submit();
         }
         submitted = true;
         notifyDataSetChanged();

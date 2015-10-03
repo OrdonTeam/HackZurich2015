@@ -17,6 +17,7 @@ public class AnswerItem {
     }
 
     public void bindLayout(View view, int position) {
+        view.setEnabled(!submitted);
         setAnswerItemSentence(view);
         setAnswerItemMark(view, position);
         setBackgroundColor(view.findViewById(R.id.answerField));
@@ -64,8 +65,8 @@ public class AnswerItem {
         return mark;
     }
 
-    public void setSubmitted(boolean submitted) {
-        this.submitted = submitted;
+    public void submit() {
+        this.submitted = true;
     }
 
     public boolean isChoosen() {

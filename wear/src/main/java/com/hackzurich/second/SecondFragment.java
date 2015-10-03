@@ -18,9 +18,8 @@ public final class SecondFragment extends CardFragment {
 
     public static final String QUESTION = "question";
     private Question question;
-    private final int[] answerIds = {R.id.answer1, R.id.answer2, R.id.answer3, R.id.answer4, R.id.answer5, R.id.answer6, R.id.answer7};
     private final int[] answerTextIds = {R.id.answerText1, R.id.answerText2, R.id.answerText3, R.id.answerText4, R.id.answerText5, R.id.answerText6, R.id.answerText7};
-    private final List<View> answerViews = new ArrayList<>();
+    private List<View> answerViews;
     private final List<TextView> answerTextViews = new ArrayList<>();
 
     @Override
@@ -43,9 +42,12 @@ public final class SecondFragment extends CardFragment {
     }
 
     private void findViews() {
+        final int[] answerIds = {R.id.answer1, R.id.answer2, R.id.answer3, R.id.answer4, R.id.answer5, R.id.answer6, R.id.answer7};
+        List<View>answerViews = new ArrayList<>();
         for (int i = 0; i < question.getAnswers().size(); i++) {
             answerViews.add(getView().findViewById(answerIds[i]));
         }
+        this.answerViews = answerViews;
         for (int i = 0; i < question.getAnswers().size(); i++) {
             answerTextViews.add((TextView) getView().findViewById(answerTextIds[i]));
         }

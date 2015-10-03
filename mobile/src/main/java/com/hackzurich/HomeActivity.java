@@ -4,13 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.wearable.PutDataMapRequest;
-import com.google.android.gms.wearable.PutDataRequest;
-import com.google.android.gms.wearable.Wearable;
-
-import com.hackzurich.model.TestFactory;
+import com.hackzurich.model.stub.TestFactory;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -33,7 +27,7 @@ public class HomeActivity extends Activity {
 
     @OnClick(R.id.learn)
     public void onLearn() {
-        StartLearn.start(this, TestFactory.newTest());
+        StartLearn.start(this, TestFactory.newTestWrapper());
     }
 
 }

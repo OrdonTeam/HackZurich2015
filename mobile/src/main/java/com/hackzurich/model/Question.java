@@ -1,17 +1,21 @@
 package com.hackzurich.model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
+import java.io.Serializable;
 import java.util.List;
 
-public final class Question implements Parcelable {
+public final class Question implements Serializable {
+    private final String id;
     private final String text;
     private final List<Answer> answers;
 
-    public Question(String text, List<Answer> answers) {
+    public Question(String id, String text, List<Answer> answers) {
+        this.id = id;
         this.text = text;
         this.answers = answers;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getText() {
@@ -21,28 +25,4 @@ public final class Question implements Parcelable {
     public List<Answer> getAnswers() {
         return answers;
     }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(text);
-        dest.writeTypedList(answers);
-    }
-
-    public static final Creator<Question> CREATOR = new Creator<Question>() {
-        @Override
-        public Question createFromParcel(Parcel in) {
-            return new Question(in.readString(), in.createTypedArrayList(Answer.CREATOR));
-        }
-
-        @Override
-        public Question[] newArray(int size) {
-            return new Question[size];
-        }
-    };
 }

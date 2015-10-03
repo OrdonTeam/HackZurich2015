@@ -1,9 +1,21 @@
-package com.hackzurich.model;
+package com.hackzurich.model.stub;
+
+import com.hackzurich.model.Answer;
+import com.hackzurich.model.Question;
+import com.hackzurich.model.Test;
+import com.hackzurich.model.TestWrapper;
+import com.hackzurich.model.data.TestData;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public final class TestFactory {
+
+    public static TestWrapper newTestWrapper() {
+        Test test = newTest();
+        TestData testData = new TestData(test);
+        return new TestWrapper(test, testData);
+    }
 
     public static Test newTest() {
         return new Test(newQuestions());
@@ -11,7 +23,7 @@ public final class TestFactory {
 
     private static List<Question> newQuestions() {
         List<Question> questions = new ArrayList<>();
-        questions.add(new Question("What colour is mars", newAnswers()));
+        questions.add(new Question("1", "What colour is mars", newAnswers()));
         return questions;
     }
 

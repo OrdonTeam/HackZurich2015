@@ -61,12 +61,7 @@ public final class StartLearn extends Activity {
     public void onLearn() {
         List<QuestionDataStatus> questionsTypes = addSelectedTypes();
         LearnActivity.start(this, testWrapper, questionsTypes);
-    }
-
-    public static void start(Context context, TestWrapper test) {
-        Intent intent = new Intent(context, StartLearn.class);
-        intent.putExtra(TEST_KEY, test);
-        context.startActivity(intent);
+        finish();
     }
 
     private List<QuestionDataStatus> addSelectedTypes() {
@@ -81,5 +76,11 @@ public final class StartLearn extends Activity {
             questionsTypes.add(QuestionDataStatus.HARD);
         }
         return questionsTypes;
+    }
+
+    public static void start(Context context, TestWrapper test) {
+        Intent intent = new Intent(context, StartLearn.class);
+        intent.putExtra(TEST_KEY, test);
+        context.startActivity(intent);
     }
 }

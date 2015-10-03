@@ -18,7 +18,7 @@ public final class TestFactory {
     }
 
     public static Test newTest() {
-        return new Test(123, newQuestions());
+        return new Test("123", newQuestions());
     }
 
     private static List<Question> newQuestions() {

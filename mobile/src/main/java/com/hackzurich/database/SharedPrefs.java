@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import com.google.gson.Gson;
 
 import java.lang.reflect.Type;
+import java.util.HashSet;
+import java.util.Set;
 
 public class SharedPrefs {
 
@@ -49,6 +51,16 @@ public class SharedPrefs {
     void putLong(String key, long value) {
         sharedPrefs.edit()
                 .putLong(key, value)
+                .apply();
+    }
+
+    Set<String> getStringSet(String key) {
+        return sharedPrefs.getStringSet(key, new HashSet<String>());
+    }
+
+    void putStringSet(String key, Set<String> value) {
+        sharedPrefs.edit()
+                .putStringSet(key, value)
                 .apply();
     }
 }

@@ -5,6 +5,8 @@ import android.preference.PreferenceManager;
 
 import com.google.gson.Gson;
 
+import java.util.Set;
+
 public class TestIdRepository {
 
     private final static String TEST_ID_KEY = "test_id";
@@ -14,11 +16,11 @@ public class TestIdRepository {
         this.prefs = new SharedPrefs(PreferenceManager.getDefaultSharedPreferences(context), new Gson());
     }
 
-    public Long get() {
-        return prefs.getLong(TEST_ID_KEY, 0);
+    public Set<String> get() {
+        return prefs.getStringSet(TEST_ID_KEY);
     }
 
-    public void set(Long testId) {
-        prefs.putLong(TEST_ID_KEY, testId);
+    public void set(Set<String> testIds) {
+        prefs.putStringSet(TEST_ID_KEY, testIds);
     }
 }

@@ -5,10 +5,10 @@ import java.util.List;
 
 public final class Test implements Serializable {
 
-    private final long id;
+    private final String id;
     private final List<Question> questions;
 
-    public Test(long id, List<Question> questions) {
+    public Test(String id, List<Question> questions) {
         this.id = id;
         this.questions = questions;
     }
@@ -17,7 +17,7 @@ public final class Test implements Serializable {
         return questions;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 }

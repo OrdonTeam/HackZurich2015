@@ -9,7 +9,7 @@ import java.util.Map;
 
 public final class TestData implements Serializable {
 
-    private long testId;
+    private String testId;
     private Map<String, QuestionData> dataMap = new HashMap<>();
 
     public TestData(Test test) {
@@ -31,10 +31,10 @@ public final class TestData implements Serializable {
     public void addData(String questionId, boolean wasCorrect) {
         QuestionData oldQuestionData = dataMap.get(questionId);
         QuestionData newQuestionData = oldQuestionData.add(wasCorrect);
-        dataMap.put(questionId,newQuestionData);
+        dataMap.put(questionId, newQuestionData);
     }
 
-    public long getTestId() {
+    public String getTestId() {
         return testId;
     }
 }

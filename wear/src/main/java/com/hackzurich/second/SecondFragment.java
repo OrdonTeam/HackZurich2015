@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import com.hackzurich.R;
+import com.hackzurich.model.Answer;
 import com.hackzurich.model.Question;
 
 import java.util.List;
@@ -88,7 +89,29 @@ public final class SecondFragment extends CardFragment {
     }
 
     private void setColors() {
+        for (int i = 0; i < question.getAnswers().size(); i++) {
+            setColorForAnswerView(answerViews.get(i),question.getAnswers().get(i));
+        }
+    }
 
+    private void setColorForAnswerView(View answerView, Answer answer) {
+        if (answerView.isSelected()) {
+            answerView.setBackgroundResource(R.drawable.blue_button_background);
+            if (submitted) {
+                if (answer.isCorrect()) {
+                    answerView.setBackgroundResource(R.drawable.green_button_background);
+                } else {
+                    answerView.setBackgroundResource(R.drawable.red_button_background);
+                }
+            }
+        } else {
+            answerView.setBackgroundResource(R.drawable.grey_button_background);
+            if (submitted) {
+                if (answer.isCorrect()) {
+                    answerView.setBackgroundResource(R.drawable.green_button_background);
+                }
+            }
+        }
     }
 
     private void setFlipper() {

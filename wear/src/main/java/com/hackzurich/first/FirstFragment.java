@@ -1,4 +1,4 @@
-package com.hackzurich;
+package com.hackzurich.first;
 
 import android.os.Bundle;
 import android.support.wearable.view.CardFragment;
@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.hackzurich.R;
 import com.hackzurich.model.Question;
 
 public final class FirstFragment extends CardFragment {

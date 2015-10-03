@@ -74,6 +74,7 @@ public class QuestionWearActivity extends WearableActivity {
         Question question = Question.fromBytes(data);
         Log.d("kasper", "watch has receive a question + " + question);
 
+        QuestionWearActivityDesign.start(getApplicationContext(),question);
         googleObservableWrapper.sendRequest(TestFactory.newQuestion());
     }
 }

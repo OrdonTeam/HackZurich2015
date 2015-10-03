@@ -4,7 +4,9 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.support.wearable.view.FragmentGridPagerAdapter;
 
+import com.hackzurich.first.FirstFragment;
 import com.hackzurich.model.Question;
+import com.hackzurich.second.SecondFragment;
 
 public final class QuestionWearPagerAdapter extends FragmentGridPagerAdapter {
     private Question question;

@@ -1,4 +1,4 @@
-package com.hackzurich;
+package com.hackzurich.second;
 
 import android.os.Bundle;
 import android.support.wearable.view.CardFragment;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.hackzurich.R;
 import com.hackzurich.model.Question;
 
 public final class SecondFragment extends CardFragment {

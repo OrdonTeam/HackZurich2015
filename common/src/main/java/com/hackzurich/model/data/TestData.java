@@ -8,9 +8,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public final class TestData implements Serializable {
-    Map<String, QuestionData> dataMap = new HashMap<>();
+
+    private long testId;
+    private Map<String, QuestionData> dataMap = new HashMap<>();
 
     public TestData(Test test) {
+        testId = test.getId();
         for (Question question : test.getQuestions()) {
             dataMap.put(question.getId(), QuestionData.claen());
         }
@@ -29,5 +32,9 @@ public final class TestData implements Serializable {
         QuestionData oldQuestionData = dataMap.get(questionId);
         QuestionData newQuestionData = oldQuestionData.add(wasCorrect);
         dataMap.put(questionId,newQuestionData);
+    }
+
+    public long getTestId() {
+        return testId;
     }
 }

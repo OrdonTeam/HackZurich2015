@@ -5,8 +5,10 @@ import com.hackzurich.model.data.TestData;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Random;
 
 public final class TestWrapper implements Serializable {
+    private static final Random random = new Random();
     private final Test test;
     private final TestData testData;
 
@@ -24,7 +26,6 @@ public final class TestWrapper implements Serializable {
     }
 
     public Question getRandomQuestionFor(List<QuestionDataStatus> questionsTypes) {
-        //TODO: Get random here
-        return test.getQuestions().get(0);
+        return test.getQuestions().get(random.nextInt() % test.getQuestions().size());
     }
 }

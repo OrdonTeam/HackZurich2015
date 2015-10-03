@@ -11,14 +11,8 @@ import java.util.List;
 
 public final class TestFactory {
 
-    public static TestWrapper newTestWrapper() {
-        Test test = newTest();
-        TestData testData = new TestData(test);
-        return new TestWrapper(test, testData);
-    }
-
     public static Test newTest() {
-        return new Test("123", newQuestions());
+        return new Test("Astronomy", newQuestions());
     }
 
     private static List<Question> newQuestions() {

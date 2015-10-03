@@ -12,17 +12,23 @@
         android:layout_height="wrap_content"
         android:text="App name"/>
 
-    <Button
-        android:id="@+id/download"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Download quiz"/>
+    <Spinner
+        android:id="@+id/databaseChooseSpinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+    </Spinner>
 
     <Button
         android:text="Learn"
         android:id="@+id/learn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/download"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Download quiz"/>
 
     <Button
         android:text="Button"

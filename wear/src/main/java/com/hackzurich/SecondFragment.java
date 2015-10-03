@@ -2,6 +2,7 @@ package com.hackzurich;
 
 import android.os.Bundle;
 import android.support.wearable.view.CardFragment;
+import android.support.wearable.view.WearableListView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,9 +22,15 @@ public final class SecondFragment extends CardFragment {
 
     @Override
     public View onCreateContentView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.first_card, container, false);
+        return inflater.inflate(R.layout.second_card, container, false);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        WearableListView listView = (WearableListView) getView().findViewById(R.id.answer_list);
+        listView.setAdapter(new AnswersListAdapter(getActivity(), question));
+    }
 
     public static SecondFragment instance(Question question) {
         SecondFragment fragment = new SecondFragment();

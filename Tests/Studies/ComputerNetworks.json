@@ -1,0 +1,58 @@
+{
+  "questions": [
+    {
+      "id":"1",
+      "text":"How many layers has the OSI model?",
+      "answers": [
+        {
+          "text":"7",
+          "correct": true
+        },
+        {
+          "text":"3",
+          "correct": false
+        },
+        {
+          "text":"8",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id":"2",
+      "text":"Which of these protocols belongs to transport layer?",
+      "answers": [
+        {
+          "text":"UDP",
+          "correct": true
+        },
+        {
+          "text":"TCP",
+          "correct": true
+        },
+        {
+          "text":"IPv4",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id":"3",
+      "text":"Which of these layers use bits as data units?",
+      "answers": [
+        {
+          "text":"Layer 2",
+          "correct": true
+        },
+        {
+          "text":"Data link Layer",
+          "correct": true
+        },
+        {
+          "text":"Physical Layer",
+          "correct": true
+        }
+      ]
+    }
+  ]
+}

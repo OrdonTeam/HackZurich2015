@@ -1,0 +1,70 @@
+{
+  "questions": [
+    {
+      "id": "1",
+      "text": "Macedonia",
+      "answers": [
+        {
+          "text": "Skopje",
+          "correct": true
+        },
+        {
+          "text": "Hanoi",
+          "correct": false
+        },
+        {
+          "text": "Managua",
+          "correct": false
+        },
+        {
+          "text": "Sarajevo",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "text": "San Marino",
+      "answers": [
+        {
+          "text": "Port Vila",
+          "correct": false
+        },
+        {
+          "text": "Gaborone",
+          "correct": false
+        },
+        {
+          "text": "City of San Marino",
+          "correct": true
+        },
+        {
+          "text": "Yerevan",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "text": "Republic of Ireland",
+      "answers": [
+        {
+          "text": "Amsterdam",
+          "correct": false
+        },
+        {
+          "text": "Ankara",
+          "correct": false
+        },
+        {
+          "text": "Dublin",
+          "correct": true
+        },
+        {
+          "text": "Juba",
+          "correct": false
+        }
+      ]
+    }
+  ]
+}

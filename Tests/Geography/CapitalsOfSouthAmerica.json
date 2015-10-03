@@ -1,0 +1,58 @@
+{
+  "questions": [
+    {
+      "id": "1",
+      "text": "Venezuela",
+      "answers": [
+        {
+          "text": "Caracas",
+          "correct": true
+        },
+        {
+          "text": "Hanoi",
+          "correct": false
+        },
+        {
+          "text": "Managua",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "text": "Bolivia",
+      "answers": [
+        {
+          "text": "Port Vila",
+          "correct": false
+        },
+        {
+          "text": "Gaborone",
+          "correct": false
+        },
+        {
+          "text": "Sucre",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "text": "Peru",
+      "answers": [
+        {
+          "text": "Lima",
+          "correct": true
+        },
+        {
+          "text": "Maseru",
+          "correct": false
+        },
+        {
+          "text": "Juba",
+          "correct": false
+        }
+      ]
+    }
+  ]
+}

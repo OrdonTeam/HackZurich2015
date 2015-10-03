@@ -1,0 +1,180 @@
+{
+  "questions": [
+    {
+      "id": "1",
+      "text": "Which event is generally considered to be the first belligerent act of World War II?",
+      "answers": [
+        {
+          "text": "Germany’s attack on Britain",
+          "correct": false
+        },
+        {
+          "text": "Germany’s attack on Russia",
+          "correct": false
+        },
+        {
+          "text": "Germany’s attack on Poland",
+          "correct": true
+        },
+        {
+          "text": "Germany’s attack on France",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id":"2",
+      "text":"What was the code name given to Germany’s plan to invade the USSR?",
+      "answers": [
+        {
+          "text":"Operation Barbarossa",
+          "correct": true
+        },
+        {
+          "text":"Operation Sea Lion",
+          "correct": false
+        },
+        {
+          "text":"Operation Wolfenstein",
+          "correct": false
+        },
+        {
+          "text":"Operation Crossbow",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id":"3",
+      "text":"Which country was the site of most of the Nazi extermination camps?",
+      "answers": [
+        {
+          "text":"The USSR",
+          "correct": false
+        },
+        {
+          "text":"Germany",
+          "correct": false
+        },
+        {
+          "text":"Hungary",
+          "correct": false
+        },
+        {
+          "text":"Poland",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id":"4",
+      "text":"Who was the Japanese admiral behind the Pearl Harbor attack?",
+      "answers": [
+        {
+          "text":"Yamamoto",
+          "correct": true
+        },
+        {
+          "text":"Matsuhito",
+          "correct": false
+        },
+        {
+          "text":"Myamoto",
+          "correct": false
+        },
+        {
+          "text":"Yoshomito",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id":"5",
+      "text":"Who met at Casablanca Conference?",
+      "answers": [
+        {
+          "text":"Hitler",
+          "correct": false
+        },
+        {
+          "text":"Stalin",
+          "correct": false
+        },
+        {
+          "text":"Churchill",
+          "correct": true
+        },
+        {
+          "text":"Roosevelt",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id":"6",
+      "text":"When World War II started?",
+      "answers": [
+        {
+          "text":"1 September 1939",
+          "correct": true
+        },
+        {
+          "text":"17 September 1939",
+          "correct": false
+        },
+        {
+          "text":"12 August 1939",
+          "correct": false
+        },
+        {
+          "text":"3 October 1939",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id":"7",
+      "text":"What were the first two western European countries that Germany invaded?",
+      "answers": [
+        {
+          "text":"Belgium",
+          "correct": true
+        },
+        {
+          "text":"Denmark",
+          "correct": false
+        },
+        {
+          "text":"France",
+          "correct": true
+        },
+        {
+          "text":"Switzerland",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id":"8",
+      "text":"Which Japan city were bombed during World War II?",
+      "answers": [
+        {
+          "text":"Osaka",
+          "correct": false
+        },
+        {
+          "text":"Tokyo",
+          "correct": false
+        },
+        {
+          "text":"Hiroshima",
+          "correct": true
+        },
+        {
+          "text":"Nagasaki",
+          "correct": true
+        }
+      ]
+    }
+  ]
+}

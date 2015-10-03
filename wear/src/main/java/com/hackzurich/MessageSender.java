@@ -14,21 +14,13 @@ import com.hackzurich.model.communication.EventMetadata;
 
 import rx.Observable;
 import rx.Subscriber;
+import rx.functions.Action1;
 
 public class MessageSender {
 
     private GoogleApiClient googleApiClient;
-    private static MessageSender instance;
 
-    public static Observable<MessageSender> getInstance(Context context) {
-        if (instance == null) {
-            instance = new MessageSender();
-            return instance.createInstance(context);
-        }
-        return Observable.just(instance);
-    }
-
-    private Observable<MessageSender> createInstance(final Context context) {
+    private Observable<MessageSender> withContext(final Context context) {
         return Observable.create(new Observable.OnSubscribe<MessageSender>() {
             @Override
             public void call(final Subscriber<? super MessageSender> subscriber) {
@@ -36,7 +28,6 @@ public class MessageSender {
                         .addConnectionCallbacks(new GoogleApiClient.ConnectionCallbacks() {
                             @Override
                             public void onConnected(Bundle bundle) {
-                                instance = MessageSender.this;
                                 subscriber.onNext(MessageSender.this);
                                 subscriber.onCompleted();
                             }
@@ -60,7 +51,22 @@ public class MessageSender {
         });
     }
 
-    public void sendRequest(Question question) {
+    public static void sendRequest(Context context, final Question question) {
+        new MessageSender().withContext(context).subscribe(new Action1<MessageSender>() {
+            @Override
+            public void call(MessageSender messageSender) {
+                messageSender.sendImpl(question);
+                messageSender.googleApiClient.disconnect();
+            }
+        }, new Action1<Throwable>() {
+            @Override
+            public void call(Throwable throwable) {
+                Log.e("kasper", "sth goes wrong" + throwable.getMessage());
+            }
+        });
+    }
+
+    private void sendImpl(Question question) {
         byte[] bytes = question.toByteArray();
         PutDataMapRequest dataMap = PutDataMapRequest.create(EventMetadata.MOBILE_EVENT_PATH);
         dataMap.getDataMap().putByteArray(EventMetadata.CONTENTS, bytes);

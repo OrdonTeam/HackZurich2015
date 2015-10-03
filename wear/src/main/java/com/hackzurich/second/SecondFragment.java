@@ -19,6 +19,7 @@ public final class SecondFragment extends CardFragment {
     private Question question;
     private List<View> answerViews;
     private List<TextView> answerTextViews;
+    private boolean submitted = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,14 +35,10 @@ public final class SecondFragment extends CardFragment {
     @Override
     public void onResume() {
         super.onResume();
-        findViews();
-        initQuestions();
-        setFlipper();
-    }
-
-    private void findViews() {
         answerViews = SecondFragmentInjector.getAnswerViews(getView());
         answerTextViews = SecondFragmentInjector.getAnswerTextViews(getView());
+        initQuestions();
+        invalidate();
     }
 
     private void initQuestions() {
@@ -52,7 +49,7 @@ public final class SecondFragment extends CardFragment {
                 @Override
                 public void onClick(View v) {
                     v.setSelected(!v.isSelected());
-                    setFlipper();
+                    invalidate();
                 }
             });
             TextView textView = answerTextViews.get(i);
@@ -60,9 +57,13 @@ public final class SecondFragment extends CardFragment {
         }
     }
 
+    private void invalidate() {
+        setFlipper();
+    }
+
     private void setFlipper() {
         ViewFlipper answerButtonViewFlipper = (ViewFlipper) getView().findViewById(R.id.answerButtonViewFlipper);
-        if (isSubmitted()) {
+        if (submitted) {
             answerButtonViewFlipper.setDisplayedChild(2);
         } else {
             if (isAnyAnswerChoosen()) {
@@ -71,10 +72,6 @@ public final class SecondFragment extends CardFragment {
                 answerButtonViewFlipper.setDisplayedChild(0);
             }
         }
-    }
-
-    private boolean isSubmitted() {
-        return false;
     }
 
     private boolean isAnyAnswerChoosen() {

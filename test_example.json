@@ -1,0 +1,18 @@
+{
+  "questions": [
+    {
+      "id":"1",
+      "text":"What colour is Mars",
+      "answers": [
+        {
+          "text":"Red",
+          "correct": true
+        },
+        {
+          "text":"Green",
+          "correct": false
+        }
+      ]
+    }
+  ]
+}

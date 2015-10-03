@@ -70,8 +70,6 @@ public class QuestionActivity extends Activity {
         for (Answer answer : question.getAnswers()) {
             answerGroupAdapter.addAnswerItem(new AnswerItem(answer));
         }
-        answerGroupAdapter.addAnswerItem(new AnswerItem(new Answer("bleble",true)));
-        answerGroupAdapter.addAnswerItem(new AnswerItem(new Answer("blebleble",false)));
     }
 
     public static Intent getIntent(Context context, Question question) {

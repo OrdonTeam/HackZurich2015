@@ -39,6 +39,6 @@ public class HomeActivity extends Activity {
 
     @OnClick(R.id.trigger_wear)
     public void onTriggerWear() {
-        new Sender(this, TestFactory.newQuestion());
+        new Sender(this, TestFactory.newQuestion()).send();
     }
 }

@@ -23,7 +23,7 @@ public final class QuestionWearActivityDesign extends WearableActivity {
 
     public static void start(Context context, Question question) {
         Intent intent = new Intent(context, QuestionWearActivityDesign.class);
-        //TODO: ADD REQUIRED FLAGS WHEN STARTED FROM SERVICE
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra(QUESTION, question);
         context.startActivity(intent);
     }

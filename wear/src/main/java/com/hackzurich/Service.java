@@ -21,7 +21,7 @@ public class Service extends WearableListenerService {
                 byte[] data = dataItem.getDataMap().getByteArray(EventMetadata.CONTENTS);
                 Question question = Question.fromBytes(data);
                 Log.d("kasper", "watch has receive a question + " + question);
-
+                QuestionWearActivityDesign.start(getApplicationContext(),question);
             }
         }
         super.onDataChanged(dataEvents);

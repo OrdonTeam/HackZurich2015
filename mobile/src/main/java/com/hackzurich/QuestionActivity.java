@@ -62,7 +62,6 @@ public class QuestionActivity extends Activity {
                 answerButtonViewFlipper.setDisplayedChild(0);
             }
         }
-
     }
 
     @OnClick(R.id.confirmAnswerButton)

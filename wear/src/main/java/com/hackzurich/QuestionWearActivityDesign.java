@@ -7,6 +7,7 @@ import android.support.wearable.activity.WearableActivity;
 import android.support.wearable.view.GridViewPager;
 
 import com.hackzurich.model.Question;
+import com.hackzurich.model.stub.TestFactory;
 
 public final class QuestionWearActivityDesign extends WearableActivity {
 
@@ -17,6 +18,9 @@ public final class QuestionWearActivityDesign extends WearableActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.question_wear_activity);
         Question question = (Question) getIntent().getSerializableExtra(QUESTION);
+
+        if(question==null) question= TestFactory.newQuestion();
+
         GridViewPager pager = (GridViewPager) findViewById(R.id.pager);
         pager.setAdapter(new QuestionWearPagerAdapter(getFragmentManager(), question));
     }

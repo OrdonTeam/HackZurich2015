@@ -30,7 +30,7 @@ public final class LearnActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        startActivityForResult(QuestionActivity.getIntent(this, TestFactory.newQuestion()), REQUEST_CODE);
+        startActivityForResult(QuestionActivity.getIntent(this, testWrapper.getRandomQuestionFor(questionsTypes)), REQUEST_CODE);
     }
 
     @Override

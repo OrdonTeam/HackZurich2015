@@ -17,13 +17,7 @@
             android:name="com.google.android.wearable"
             android:required="false"/>
 
-        <activity android:name=".QuestionWearActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
+        <activity android:name=".QuestionWearActivity"/>
         <activity android:name=".QuestionWearActivityDesign"/>
 
         <service

@@ -25,8 +25,11 @@ public final class TestWrapper implements Serializable {
         testData.addData(questionId, wasCorrect);
     }
 
-    public Question getRandomQuestionFor(List<QuestionDataStatus> questionsTypes) {
-        List<String> ids = testData.getQuestionsIdsInTypes(questionsTypes);
+    public List<String> getIdsInTypes(List<QuestionDataStatus> questionsTypes) {
+        return testData.getQuestionsIdsInTypes(questionsTypes);
+    }
+
+    public Question getRandomQuestionFor(List<String> ids) {
         int questionIndex = generateRandomQuestionIndex(ids.size());
         String questionId = ids.get(questionIndex);
         return test.getQuestionsWithId(questionId);

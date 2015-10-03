@@ -4,10 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.hackzurich.model.TestWrapper;
 import com.hackzurich.model.data.QuestionDataStatus;
-import com.hackzurich.model.stub.TestFactory;
+import com.hackzurich.service.UpdateDataService;
 
 import java.util.List;
 
@@ -19,10 +20,12 @@ public final class LearnActivity extends Activity {
 
     private TestWrapper testWrapper;
     private List<QuestionDataStatus> questionsTypes;
+    private UpdateDataService updateDataService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        updateDataService = new UpdateDataService(this);
         testWrapper = (TestWrapper) getIntent().getSerializableExtra(TEST_WRAPPER);
         questionsTypes = QuestionDataStatuses.getList(getIntent().getSerializableExtra(QUESTION_TYPES));
     }
@@ -30,7 +33,13 @@ public final class LearnActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        startActivityForResult(QuestionActivity.getIntent(this, testWrapper.getRandomQuestionFor(questionsTypes)), REQUEST_CODE);
+        List<String> idsInTypes = testWrapper.getIdsInTypes(questionsTypes);
+        if (idsInTypes.isEmpty()) {
+            Toast.makeText(this, "Well done! No more questions here!", Toast.LENGTH_LONG).show();
+            finish();
+        } else {
+            startActivityForResult(QuestionActivity.getIntent(this, testWrapper.getRandomQuestionFor(idsInTypes)), REQUEST_CODE);
+        }
     }
 
     @Override
@@ -38,7 +47,8 @@ public final class LearnActivity extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                testWrapper.addData(
+                updateDataService.update(
+                        testWrapper.getTestData(),
                         data.getStringExtra(QuestionActivity.QUESTION_ID),
                         data.getBooleanExtra(QuestionActivity.CORRECT, false)
                 );

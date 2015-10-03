@@ -4,23 +4,26 @@ import android.os.Bundle;
 import android.support.wearable.activity.WearableActivity;
 import android.util.Log;
 
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.wearable.DataEvent;
 import com.google.android.gms.wearable.DataEventBuffer;
 import com.google.android.gms.wearable.DataMapItem;
 
+import rx.Subscription;
 import rx.functions.Action1;
 
 
 public class QuestionWearActivity extends WearableActivity {
-    private GoogleApiClient googleApiClient;
+    private Subscription subscription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.question_wear_activity);
+    }
 
-        new GoogleObservableWrapper().eventsEmitter(this).subscribe(
+    private void subscribeToNewEvents() {
+        GoogleObservableWrapper googleObservableWrapper = new GoogleObservableWrapper(this);
+        subscription = googleObservableWrapper.eventsEmitter().subscribe(
                 new Action1<DataEventBuffer>() {
                     @Override
                     public void call(DataEventBuffer dataEvents) {
@@ -32,6 +35,21 @@ public class QuestionWearActivity extends WearableActivity {
                         Log.e("kasper", throwable.getMessage());
                     }
                 });
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(subscription!= null){
+            subscription.unsubscribe();
+            subscription = null;
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        subscribeToNewEvents();
     }
 
     private void onDataEventBufferReceived(DataEventBuffer dataEvents) {

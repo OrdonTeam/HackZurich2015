@@ -17,9 +17,14 @@ import rx.functions.Func1;
 
 public class GoogleObservableWrapper {
 
+    private final Context context;
     private GoogleApiClient googleApiClient;
 
-    Observable<DataEventBuffer> eventsEmitter(Context context){
+    public GoogleObservableWrapper(Context context) {
+        this.context = context;
+    }
+
+    Observable<DataEventBuffer> eventsEmitter(){
         return client(context).flatMap(new Func1<Bundle, Observable<DataEventBuffer>>() {
             @Override
             public Observable<DataEventBuffer> call(Bundle bundle) {

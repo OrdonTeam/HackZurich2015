@@ -1,7 +1,6 @@
 package com.hackzurich;
 
 import android.app.Activity;
-import android.app.LauncherActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -39,7 +38,10 @@ public final class LearnActivity extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                //save result here
+                testWrapper.addData(
+                        data.getStringExtra(QuestionActivity.QUESTION_ID),
+                        data.getBooleanExtra(QuestionActivity.CORRECT, false)
+                );
             } else {
                 finish();
             }

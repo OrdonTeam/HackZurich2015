@@ -17,8 +17,11 @@ import butterknife.OnClick;
 public class QuestionActivity extends Activity {
 
     public static final String QUESTION = "question";
+    public static final String QUESTION_ID = "question_id";
+    public static final String CORRECT = "correct";
 
     private AnswerGroupAdapter answerGroupAdapter = new AnswerGroupAdapter();
+    private Question question;
 
     @Bind(R.id.answerListView)
     ListView answerListView;
@@ -33,7 +36,7 @@ public class QuestionActivity extends Activity {
     }
 
     private void setAdapter() {
-        Question question = (Question) getIntent().getSerializableExtra(QUESTION);
+        question = (Question) getIntent().getSerializableExtra(QUESTION);
         for (Answer answer : question.getAnswers()) {
             answerGroupAdapter.addAnswerItem(new AnswerItem(answer));
         }
@@ -52,7 +55,10 @@ public class QuestionActivity extends Activity {
 
     @OnClick(R.id.next)
     public void onNext() {
-        setResult(RESULT_OK);
+        Intent data = new Intent();
+        data.putExtra(QUESTION_ID,question.getId());
+        data.putExtra(CORRECT, answerGroupAdapter.wasCorrect());
+        setResult(RESULT_OK, data);
         finish();
     }
 

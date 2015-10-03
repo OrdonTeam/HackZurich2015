@@ -74,4 +74,12 @@ public class AnswerItem {
     public void setSubmitted(boolean submitted) {
         this.submitted = submitted;
     }
+
+    public boolean isChoosen() {
+        return choosen;
+    }
+
+    public boolean isCorrect() {
+        return answer.isCorrect();
+    }
 }

@@ -11,9 +11,6 @@ import com.hackzurich.R;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by karola on 03.10.15.
- */
 public class AnswerGroupAdapter extends BaseAdapter {
 
     public final List<AnswerItem> answerGroup = new ArrayList<>();
@@ -22,8 +19,7 @@ public class AnswerGroupAdapter extends BaseAdapter {
 
     }
 
-    public void addAnswerItem(AnswerItem answerItem)
-    {
+    public void addAnswerItem(AnswerItem answerItem) {
         answerGroup.add(answerItem);
         notifyDataSetChanged();
     }
@@ -46,17 +42,25 @@ public class AnswerGroupAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View oldView, ViewGroup viewGroup) {
         AnswerItem answerItem = answerGroup.get(position);
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.answer_field,viewGroup,false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.answer_field, viewGroup, false);
         answerItem.bindLayout(view, position);
 
         return view;
     }
 
-    public void setSubmitted()
-    {
-        for(AnswerItem answerItem : answerGroup) {
+    public void setSubmitted() {
+        for (AnswerItem answerItem : answerGroup) {
             answerItem.setSubmitted(true);
         }
         notifyDataSetChanged();
+    }
+
+    public boolean wasCorrect() {
+        for (AnswerItem answerItem : answerGroup) {
+            if(answerItem.isChoosen() != answerItem.isCorrect()){
+                return false;
+            }
+        }
+        return true;
     }
 }

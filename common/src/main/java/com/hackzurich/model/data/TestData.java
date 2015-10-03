@@ -24,4 +24,10 @@ public final class TestData implements Serializable {
         }
         return count;
     }
+
+    public void addData(String questionId, boolean wasCorrect) {
+        QuestionData oldQuestionData = dataMap.get(questionId);
+        QuestionData newQuestionData = oldQuestionData.add(wasCorrect);
+        dataMap.put(questionId,newQuestionData);
+    }
 }

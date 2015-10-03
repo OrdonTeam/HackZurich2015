@@ -16,4 +16,8 @@ public final class TestWrapper implements Serializable {
     public TestData getTestData() {
         return testData;
     }
+
+    public void addData(String questionId, boolean wasCorrect) {
+        testData.addData(questionId,wasCorrect);
+    }
 }

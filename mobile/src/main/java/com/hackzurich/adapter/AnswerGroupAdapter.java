@@ -49,8 +49,10 @@ public class AnswerGroupAdapter extends BaseAdapter {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                answerItem.changeChoosen();
-                notifyDataSetChanged();
+                if (!submitted) {
+                    answerItem.changeChoosen();
+                    notifyDataSetChanged();
+                }
             }
         });
         return view;
@@ -66,7 +68,7 @@ public class AnswerGroupAdapter extends BaseAdapter {
 
     public boolean wasCorrect() {
         for (AnswerItem answerItem : answerGroup) {
-            if(answerItem.isChoosen() != answerItem.isCorrect()){
+            if (answerItem.isChoosen() != answerItem.isCorrect()) {
                 return false;
             }
         }
@@ -78,8 +80,8 @@ public class AnswerGroupAdapter extends BaseAdapter {
     }
 
     public boolean isAnyAnswerChoosen() {
-        for(AnswerItem answerItem : answerGroup) {
-            if(answerItem.isChoosen()) {
+        for (AnswerItem answerItem : answerGroup) {
+            if (answerItem.isChoosen()) {
                 return true;
             }
         }

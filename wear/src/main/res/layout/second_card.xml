@@ -120,30 +120,34 @@
         <ViewFlipper
             android:id="@+id/answerButtonViewFlipper"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp">
 
-            <Button
+            <TextView
                 android:id="@+id/doNotKnowButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/very_small_margin"
                 android:background="@drawable/selectable_button_background"
+                android:padding="4dp"
                 android:text="No idea..."/>
 
-            <Button
+            <TextView
                 android:id="@+id/confirmAnswerButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/very_small_margin"
                 android:background="@drawable/selectable_button_background"
+                android:padding="4dp"
                 android:text="Check it!"/>
 
-            <Button
+            <TextView
                 android:id="@+id/nextButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/very_small_margin"
                 android:background="@drawable/selectable_button_background"
+                android:padding="4dp"
                 android:text="Next!"/>
         </ViewFlipper>
     </LinearLayout>

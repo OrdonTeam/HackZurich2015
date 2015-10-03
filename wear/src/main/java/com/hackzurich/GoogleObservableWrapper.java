@@ -45,6 +45,7 @@ public class GoogleObservableWrapper {
 
     public void sendRequest() {
         String[] contents = new String[]{"dat41", "data52", "data63"};
+
         PutDataMapRequest dataMap = PutDataMapRequest.create("/myapp/myevent/app");
         dataMap.getDataMap().putStringArray("contents", contents);
         dataMap.getDataMap().putDouble("timestamp", System.currentTimeMillis());

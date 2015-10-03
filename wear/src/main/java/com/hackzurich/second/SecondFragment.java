@@ -18,9 +18,8 @@ public final class SecondFragment extends CardFragment {
 
     public static final String QUESTION = "question";
     private Question question;
-    private final int[] answerTextIds = {R.id.answerText1, R.id.answerText2, R.id.answerText3, R.id.answerText4, R.id.answerText5, R.id.answerText6, R.id.answerText7};
     private List<View> answerViews;
-    private final List<TextView> answerTextViews = new ArrayList<>();
+    private List<TextView> answerTextViews;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,9 +47,12 @@ public final class SecondFragment extends CardFragment {
             answerViews.add(getView().findViewById(answerIds[i]));
         }
         this.answerViews = answerViews;
+        List<TextView> answerTextViews = new ArrayList<>();
+        final int[] answerTextIds = {R.id.answerText1, R.id.answerText2, R.id.answerText3, R.id.answerText4, R.id.answerText5, R.id.answerText6, R.id.answerText7};
         for (int i = 0; i < question.getAnswers().size(); i++) {
             answerTextViews.add((TextView) getView().findViewById(answerTextIds[i]));
         }
+        this.answerTextViews = answerTextViews;
     }
 
     private void initQuestions() {

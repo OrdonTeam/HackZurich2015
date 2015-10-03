@@ -1,5 +1,7 @@
 package com.hackzurich.model;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+
 import java.io.Serializable;
 
 public final class Answer implements Serializable {
@@ -19,4 +21,7 @@ public final class Answer implements Serializable {
         return correct;
     }
 
+    public String toString() {
+        return ReflectionToStringBuilder.toString(this);
+    }
 }

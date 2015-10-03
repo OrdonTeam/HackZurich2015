@@ -6,10 +6,10 @@ import android.support.wearable.activity.WearableActivity;
 import android.util.Log;
 
 import com.google.android.gms.wearable.DataEvent;
-import com.google.android.gms.wearable.DataEventBuffer;
 import com.google.android.gms.wearable.DataMapItem;
 import com.hackzurich.model.Question;
 import com.hackzurich.model.communication.EventMetadata;
+import com.hackzurich.model.stub.TestFactory;
 
 import rx.Subscription;
 import rx.functions.Action1;
@@ -42,11 +42,11 @@ public class QuestionWearActivity extends WearableActivity {
     }
 
     @NonNull
-    private Action1<DataEventBuffer> onSuccess() {
-        return new Action1<DataEventBuffer>() {
+    private Action1<DataEvent> onSuccess() {
+        return new Action1<DataEvent>() {
             @Override
-            public void call(DataEventBuffer dataEvents) {
-                onDataEventBufferReceived(dataEvents);
+            public void call(DataEvent dataEvent) {
+                onEventReceived(dataEvent);
             }
         };
     }
@@ -68,18 +68,12 @@ public class QuestionWearActivity extends WearableActivity {
         subscribeToNewEvents();
     }
 
-    private void onDataEventBufferReceived(DataEventBuffer dataEvents) {
-        for (DataEvent event : dataEvents) {
-            Log.d("kasper", "Event received: " + event.getDataItem().getUri());
-            String eventUri = event.getDataItem().getUri().toString();
+    private void onEventReceived(DataEvent event) {
+        DataMapItem dataItem = DataMapItem.fromDataItem(event.getDataItem());
+        byte[] data = dataItem.getDataMap().getByteArray(EventMetadata.CONTENTS);
+        Question question = Question.fromBytes(data);
+        Log.d("kasper", "watch has receive a question + " + question);
 
-            if (eventUri.contains(EventMetadata.WEAR_EVENT_PATH)) {
-                DataMapItem dataItem = DataMapItem.fromDataItem(event.getDataItem());
-                byte[] data = dataItem.getDataMap().getByteArray(EventMetadata.CONTENTS);
-                Question question = Question.fromBytes(data);
-                Log.d("kasper", "watch has receive a question + " + question);
-                googleObservableWrapper.sendRequest();
-            }
-        }
+        googleObservableWrapper.sendRequest(TestFactory.newQuestion());
     }
 }

@@ -3,8 +3,10 @@ package com.hackzurich;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.widget.ListView;
+import android.widget.ViewFlipper;
 
 import com.hackzurich.adapter.AnswerGroupAdapter;
 import com.hackzurich.model.Answer;
@@ -40,7 +42,31 @@ public class QuestionActivity extends Activity {
         for (Answer answer : question.getAnswers()) {
             answerGroupAdapter.addAnswerItem(new AnswerItem(answer));
         }
+        answerGroupAdapter.registerDataSetObserver(new DataSetObserver() {
+            @Override
+            public void onChanged() {
+                onDataSetChange();
+            }
+        });
         answerListView.setAdapter(answerGroupAdapter);
+    }
+
+    private void onDataSetChange() {
+
+        ViewFlipper answerButtonViewFlipper = (ViewFlipper) findViewById(R.id.answerButtonViewFlipper);
+
+        if(answerGroupAdapter.isAnyAnswerChoosen()) {
+            if(answerGroupAdapter.isSubmitted()) {
+                answerButtonViewFlipper.setDisplayedChild(2);
+            }
+            else {
+                answerButtonViewFlipper.setDisplayedChild(1);
+            }
+        }
+        else {
+            answerButtonViewFlipper.setDisplayedChild(0);
+        }
+
     }
 
     @OnClick(R.id.confirmAnswerButton)
@@ -53,7 +79,7 @@ public class QuestionActivity extends Activity {
 
     }
 
-    @OnClick(R.id.next)
+    @OnClick(R.id.nextButton)
     public void onNext() {
         Intent data = new Intent();
         data.putExtra(QUESTION_ID,question.getId());

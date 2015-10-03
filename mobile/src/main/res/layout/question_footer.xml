@@ -1,39 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <LinearLayout
+    <ViewFlipper
+        android:id="@+id/answerButtonViewFlipper"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent">
 
         <Button
             android:id="@+id/doNotKnowButton"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/very_small_margin"
-            android:layout_weight="1"
             android:background="@drawable/selectable_button_background"
-            android:text="I have no foggiest idea..."/>
+            android:text="I have no foggiest idea..." />
 
         <Button
             android:id="@+id/confirmAnswerButton"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/very_small_margin"
-            android:layout_weight="1"
             android:background="@drawable/selectable_button_background"
-            android:text="Confirm"/>
-    </LinearLayout>
+            android:text="Done! Check my answers!" />
 
-    <Button
-        android:id="@+id/next"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/very_small_margin"
-        android:background="@drawable/selectable_button_background"
-        android:text="Next"/>
+        <Button
+            android:id="@+id/nextButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/very_small_margin"
+            android:background="@drawable/selectable_button_background"
+            android:text="Next question, please!" />
+
+    </ViewFlipper>
 </LinearLayout>

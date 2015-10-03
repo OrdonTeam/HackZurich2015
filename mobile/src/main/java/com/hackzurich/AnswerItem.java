@@ -17,20 +17,13 @@ public class AnswerItem {
     }
 
     public void bindLayout(View view, int position) {
-        setOnClickListener(view);
         setAnswerItemSentence(view);
         setAnswerItemMark(view, position);
         setBackgroundColor(view.findViewById(R.id.answerField));
     }
 
-    private void setOnClickListener(View view) {
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                choosen = !choosen;
-                setBackgroundColor(view.findViewById(R.id.answerField));
-            }
-        });
+    public void changeChoosen() {
+        choosen = !choosen;
     }
 
     public void setBackgroundColor(View view) {

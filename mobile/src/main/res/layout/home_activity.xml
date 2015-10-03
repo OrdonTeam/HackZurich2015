@@ -12,6 +12,11 @@
         android:layout_height="wrap_content"
         android:text="App name"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Now, I wanna to learn:"/>
+
     <Spinner
         android:id="@+id/databaseChooseSpinner"
         android:layout_width="fill_parent"
@@ -30,13 +35,4 @@
         android:layout_height="wrap_content"
         android:text="Download quiz"/>
 
-    <Button
-        android:text="Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <Button
-        android:text="Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
 </LinearLayout>

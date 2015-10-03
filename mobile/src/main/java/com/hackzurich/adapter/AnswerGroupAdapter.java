@@ -13,7 +13,8 @@ import java.util.List;
 
 public class AnswerGroupAdapter extends BaseAdapter {
 
-    public final List<AnswerItem> answerGroup = new ArrayList<>();
+    private final List<AnswerItem> answerGroup = new ArrayList<>();
+    private boolean submitted;
 
     public AnswerGroupAdapter() {
 
@@ -41,10 +42,17 @@ public class AnswerGroupAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View oldView, ViewGroup viewGroup) {
-        AnswerItem answerItem = answerGroup.get(position);
+        final AnswerItem answerItem = answerGroup.get(position);
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.answer_field, viewGroup, false);
         answerItem.bindLayout(view, position);
 
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                answerItem.changeChoosen();
+                notifyDataSetChanged();
+            }
+        });
         return view;
     }
 
@@ -52,6 +60,7 @@ public class AnswerGroupAdapter extends BaseAdapter {
         for (AnswerItem answerItem : answerGroup) {
             answerItem.setSubmitted(true);
         }
+        submitted = true;
         notifyDataSetChanged();
     }
 
@@ -62,5 +71,18 @@ public class AnswerGroupAdapter extends BaseAdapter {
             }
         }
         return true;
+    }
+
+    public boolean isSubmitted() {
+        return submitted;
+    }
+
+    public boolean isAnyAnswerChoosen() {
+        for(AnswerItem answerItem : answerGroup) {
+            if(answerItem.isChoosen()) {
+                return true;
+            }
+        }
+        return false;
     }
 }

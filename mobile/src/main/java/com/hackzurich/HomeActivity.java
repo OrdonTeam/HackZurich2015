@@ -4,15 +4,16 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.hackzurich.stub.STUB_PopulateDatabase;
+import com.hackzurich.connection.Listener;
+import com.hackzurich.connection.Sender;
+import com.hackzurich.model.stub.TestFactory;
 import com.hackzurich.service.RepositoryService;
+import com.hackzurich.stub.STUB_PopulateDatabase;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class HomeActivity extends Activity {
-
-    private SyncService syncService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,14 +23,7 @@ public class HomeActivity extends Activity {
 
         STUB_PopulateDatabase.populate(this);
 
-        syncService = new SyncService(this);
-        syncService.sync();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        syncService.onPause();
+        new Listener(this).start();
     }
 
     @OnClick(R.id.download)
@@ -42,4 +36,9 @@ public class HomeActivity extends Activity {
         StartLearn.start(this, new RepositoryService(this).getCurrentTestWrapper());
     }
 
+
+    @OnClick(R.id.trigger_wear)
+    public void onTriggerWear() {
+        new Sender(this, TestFactory.newQuestion());
+    }
 }

@@ -5,6 +5,7 @@ import android.support.wearable.view.CardFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
@@ -37,8 +38,32 @@ public final class SecondFragment extends CardFragment {
         super.onResume();
         answerViews = SecondFragmentInjector.getAnswerViews(getView());
         answerTextViews = SecondFragmentInjector.getAnswerTextViews(getView());
+        bindButtons(getView());
         initQuestions();
         invalidate();
+    }
+
+    private void bindButtons(View view) {
+        view.findViewById(R.id.doNotKnowButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                submitted = true;
+                invalidate();
+            }
+        });
+        view.findViewById(R.id.confirmAnswerButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                submitted = true;
+                invalidate();
+            }
+        });
+        view.findViewById(R.id.nextButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
+            }
+        });
     }
 
     private void initQuestions() {
@@ -58,7 +83,12 @@ public final class SecondFragment extends CardFragment {
     }
 
     private void invalidate() {
+        setColors();
         setFlipper();
+    }
+
+    private void setColors() {
+
     }
 
     private void setFlipper() {

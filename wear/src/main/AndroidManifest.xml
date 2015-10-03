@@ -17,7 +17,6 @@
             android:name="com.google.android.wearable"
             android:required="false"/>
 
-        <activity android:name=".QuestionWearActivity"/>
         <activity android:name=".QuestionWearActivityDesign"/>
 
         <service

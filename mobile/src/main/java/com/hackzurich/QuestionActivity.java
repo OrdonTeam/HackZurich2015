@@ -58,7 +58,7 @@ public class QuestionActivity extends Activity {
     }
 
     private void confirmAnswerButtonClicked() {
-
+        answerGroupAdapter.setSubmitted();
     }
 
     private void addExampleAnswers() {

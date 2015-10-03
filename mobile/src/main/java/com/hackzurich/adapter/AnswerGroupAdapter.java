@@ -52,5 +52,11 @@ public class AnswerGroupAdapter extends BaseAdapter {
         return view;
     }
 
-
+    public void setSubmitted()
+    {
+        for(AnswerItem answerItem : answerGroup) {
+            answerItem.setSubmitted(true);
+        }
+        notifyDataSetChanged();
+    }
 }

@@ -13,6 +13,7 @@ public class AnswerItem {
 
     private Answer answer;
     private boolean choosen;
+    private boolean submitted;
 
     public AnswerItem(Answer answer) {
         this.answer = answer;
@@ -22,6 +23,7 @@ public class AnswerItem {
         setOnClickListener(view);
         setAnswerItemSentence(view);
         setAnswerItemMark(view, position);
+        setBackgroundColor(view);
     }
 
     private void setOnClickListener(View view) {
@@ -29,13 +31,37 @@ public class AnswerItem {
             @Override
             public void onClick(View view) {
                 choosen = !choosen;
-                setBackgroundColor();
+                setBackgroundColor(view);
             }
         });
     }
 
-    public void setBackgroundColor() {
+    public void setBackgroundColor(View view) {
 
+        if(choosen) {
+            view.setBackgroundResource(R.color.blue);
+
+            if(submitted) {
+                if(answer.isCorrect()) {
+                    view.setBackgroundResource(R.color.green);
+                }
+                else {
+                    view.setBackgroundResource(R.color.red);
+                }
+            }
+        }
+        else {
+            view.setBackgroundResource(R.color.white);
+
+            if (submitted) {
+                if (answer.isCorrect()) {
+                    view.setBackgroundResource(R.color.green);
+                }
+                else {
+                    view.setBackgroundResource(R.color.red);
+                }
+            }
+        }
     }
 
     private void setAnswerItemSentence(View view) {
@@ -54,5 +80,9 @@ public class AnswerItem {
         String mark = String.valueOf(Character.toChars(position + ASCII_CODE_FOR_UP_CASE));
         mark = mark + ".";
         return mark;
+    }
+
+    public void setSubmitted(boolean submitted) {
+        this.submitted = submitted;
     }
 }

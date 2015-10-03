@@ -76,7 +76,7 @@ public class QuestionActivity extends Activity {
 
     @OnClick(R.id.doNotKnowButton)
     public void doNotKnowButtonClicked() {
-
+        answerGroupAdapter.setSubmitted();
     }
 
     @OnClick(R.id.nextButton)

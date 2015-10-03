@@ -16,7 +16,7 @@ public class TestDataRepository {
         this.prefs = new SharedPrefs(PreferenceManager.getDefaultSharedPreferences(context), new Gson());
     }
 
-    public TestData get(long id) {
+    public TestData get(String id) {
         return (TestData) prefs.readFromPrefs(TEST_DATA_PREFIX_KEY + id, TestData.class);
     }
 

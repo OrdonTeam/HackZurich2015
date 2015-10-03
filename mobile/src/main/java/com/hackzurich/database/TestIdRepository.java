@@ -10,6 +10,7 @@ import java.util.Set;
 public class TestIdRepository {
 
     private final static String TEST_ID_KEY = "test_id";
+    public static final String CURRENT_TEST_ID = "current_test_id";
     private final SharedPrefs prefs;
 
     public TestIdRepository(Context context) {
@@ -22,5 +23,13 @@ public class TestIdRepository {
 
     public void set(Set<String> testIds) {
         prefs.putStringSet(TEST_ID_KEY, testIds);
+    }
+
+    public String getCurrentTestId() {
+        return (String) prefs.readFromPrefs(CURRENT_TEST_ID, String.class);
+    }
+
+    public void setCurrentTestID(String testId) {
+        prefs.saveToPrefs(CURRENT_TEST_ID, testId, String.class);
     }
 }

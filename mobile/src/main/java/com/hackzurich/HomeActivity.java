@@ -4,7 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.hackzurich.model.stub.TestFactory;
+import com.hackzurich.stub.STUB_PopulateDatabase;
+import com.hackzurich.service.RepositoryService;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -18,6 +19,8 @@ public class HomeActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
         ButterKnife.bind(this);
+
+        STUB_PopulateDatabase.populate(this);
 
         syncService = new SyncService(this);
         syncService.sync();
@@ -36,7 +39,7 @@ public class HomeActivity extends Activity {
 
     @OnClick(R.id.learn)
     public void onLearn() {
-        StartLearn.start(this, TestFactory.newTestWrapper());
+        StartLearn.start(this, new RepositoryService(this).getCurrentTestWrapper());
     }
 
 }

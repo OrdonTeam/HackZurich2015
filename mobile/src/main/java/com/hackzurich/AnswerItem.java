@@ -19,8 +19,23 @@ public class AnswerItem {
     }
 
     public void bindLayout(View view, int position) {
+        setOnClickListener(view);
         setAnswerItemSentence(view);
         setAnswerItemMark(view, position);
+    }
+
+    private void setOnClickListener(View view) {
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                choosen = !choosen;
+                setBackgroundColor();
+            }
+        });
+    }
+
+    public void setBackgroundColor() {
+
     }
 
     private void setAnswerItemSentence(View view) {
@@ -36,12 +51,8 @@ public class AnswerItem {
     }
 
     private String generateMark(int position) {
-        String mark = String.valueOf(position + ASCII_CODE_FOR_UP_CASE);
+        String mark = String.valueOf(Character.toChars(position + ASCII_CODE_FOR_UP_CASE));
         mark = mark + ".";
         return mark;
-    }
-
-    public void setBackgroundColor() {
-
     }
 }

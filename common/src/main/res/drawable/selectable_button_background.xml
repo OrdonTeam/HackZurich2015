@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="true">
+        <ripple android:color="@color/blue_pressed">
+            <item>
+                <shape>
+                    <corners
+                        android:radius="@dimen/normal_button_radius"/>
+                    <solid android:color="@color/blue"/>
+                </shape>
+            </item>
+        </ripple>
+    </item>
+    <item>
+        <ripple android:color="@color/grey_pressed">
+            <item>
+                <shape>
+                    <corners
+                        android:radius="@dimen/normal_button_radius"/>
+                    <solid android:color="@color/grey"/>
+                </shape>
+            </item>
+        </ripple>
+    </item>
+</selector>

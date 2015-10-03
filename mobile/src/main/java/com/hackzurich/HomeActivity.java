@@ -11,13 +11,22 @@ import butterknife.OnClick;
 
 public class HomeActivity extends Activity {
 
+    private SyncService syncService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
         ButterKnife.bind(this);
 
-        new SyncService(this).sync();
+        syncService = new SyncService(this);
+        syncService.sync();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        syncService.onPause();
     }
 
     @OnClick(R.id.download)

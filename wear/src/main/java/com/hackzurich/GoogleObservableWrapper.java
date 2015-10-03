@@ -8,6 +8,8 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.wearable.DataApi;
 import com.google.android.gms.wearable.DataEventBuffer;
+import com.google.android.gms.wearable.PutDataMapRequest;
+import com.google.android.gms.wearable.PutDataRequest;
 import com.google.android.gms.wearable.Wearable;
 
 import rx.Observable;
@@ -19,12 +21,13 @@ public class GoogleObservableWrapper {
 
     private final Context context;
     private GoogleApiClient googleApiClient;
+    private DataApi.DataListener dataListener;
 
     public GoogleObservableWrapper(Context context) {
         this.context = context;
     }
 
-    Observable<DataEventBuffer> eventsEmitter(){
+    Observable<DataEventBuffer> eventsEmitter() {
         return client(context).flatMap(new Func1<Bundle, Observable<DataEventBuffer>>() {
             @Override
             public Observable<DataEventBuffer> call(Bundle bundle) {
@@ -33,18 +36,34 @@ public class GoogleObservableWrapper {
         });
     }
 
+    void onPause() {
+        if (googleApiClient != null) {
+            Wearable.DataApi.removeListener(googleApiClient, dataListener);
+            googleApiClient.disconnect();
+        }
+    }
+
+    public void sendRequest() {
+        String[] contents = new String[]{"dat41", "data52", "data63"};
+        PutDataMapRequest dataMap = PutDataMapRequest.create("/myapp/myevent/app");
+        dataMap.getDataMap().putStringArray("contents", contents);
+        dataMap.getDataMap().putDouble("timestamp", System.currentTimeMillis());
+        PutDataRequest request = dataMap.asPutDataRequest();
+        Wearable.DataApi.putDataItem(googleApiClient, request);
+    }
+
+
     private Observable<DataEventBuffer> dataChanged() {
         return Observable.create(new Observable.OnSubscribe<DataEventBuffer>() {
-
             @Override
             public void call(final Subscriber<? super DataEventBuffer> subscriber) {
-
-                Wearable.DataApi.addListener(googleApiClient, new DataApi.DataListener() {
+                dataListener = new DataApi.DataListener() {
                     @Override
                     public void onDataChanged(DataEventBuffer dataEventBuffer) {
                         subscriber.onNext(dataEventBuffer);
                     }
-                });
+                };
+                Wearable.DataApi.addListener(googleApiClient, dataListener);
             }
         });
     }

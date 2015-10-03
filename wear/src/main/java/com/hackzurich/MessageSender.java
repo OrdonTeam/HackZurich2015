@@ -19,8 +19,13 @@ import rx.functions.Action1;
 public class MessageSender {
 
     private GoogleApiClient googleApiClient;
+    private final Context context;
 
-    private Observable<MessageSender> withContext(final Context context) {
+    public MessageSender(Context context) {
+        this.context = context;
+    }
+
+    private Observable<MessageSender> connect() {
         return Observable.create(new Observable.OnSubscribe<MessageSender>() {
             @Override
             public void call(final Subscriber<? super MessageSender> subscriber) {
@@ -52,7 +57,7 @@ public class MessageSender {
     }
 
     public static void sendRequest(Context context, final Question question) {
-        new MessageSender().withContext(context).subscribe(new Action1<MessageSender>() {
+        new MessageSender(context).connect().subscribe(new Action1<MessageSender>() {
             @Override
             public void call(MessageSender messageSender) {
                 messageSender.sendImpl(question);

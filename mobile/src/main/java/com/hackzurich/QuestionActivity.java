@@ -52,19 +52,15 @@ public class QuestionActivity extends Activity {
     }
 
     private void onDataSetChange() {
-
         ViewFlipper answerButtonViewFlipper = (ViewFlipper) findViewById(R.id.answerButtonViewFlipper);
-
-        if(answerGroupAdapter.isAnyAnswerChoosen()) {
-            if(answerGroupAdapter.isSubmitted()) {
-                answerButtonViewFlipper.setDisplayedChild(2);
-            }
-            else {
+        if (answerGroupAdapter.isSubmitted()) {
+            answerButtonViewFlipper.setDisplayedChild(2);
+        } else {
+            if (answerGroupAdapter.isAnyAnswerChoosen()) {
                 answerButtonViewFlipper.setDisplayedChild(1);
+            } else {
+                answerButtonViewFlipper.setDisplayedChild(0);
             }
-        }
-        else {
-            answerButtonViewFlipper.setDisplayedChild(0);
         }
 
     }
@@ -82,7 +78,7 @@ public class QuestionActivity extends Activity {
     @OnClick(R.id.nextButton)
     public void onNext() {
         Intent data = new Intent();
-        data.putExtra(QUESTION_ID,question.getId());
+        data.putExtra(QUESTION_ID, question.getId());
         data.putExtra(CORRECT, answerGroupAdapter.wasCorrect());
         setResult(RESULT_OK, data);
         finish();

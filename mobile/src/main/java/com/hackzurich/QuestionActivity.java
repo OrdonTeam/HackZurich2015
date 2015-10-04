@@ -31,6 +31,8 @@ public class QuestionActivity extends Activity {
 
     @Bind(R.id.questionSentenceTextView)
     TextView questionTextView;
+    @Bind(R.id.questionMarkTextView)
+    TextView questionCounter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,7 @@ public class QuestionActivity extends Activity {
         question = (Question) getIntent().getSerializableExtra(QUESTION);
         setAdapter();
         questionTextView.setText(question.getText());
+        questionCounter.setText(question.getId() + ".");
     }
 
     private void setAdapter() {

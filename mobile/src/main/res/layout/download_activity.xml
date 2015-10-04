@@ -22,6 +22,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/very_small_margin"
+            android:background="@drawable/button_next_background"
             android:text="Download"/>
     </LinearLayout>
 

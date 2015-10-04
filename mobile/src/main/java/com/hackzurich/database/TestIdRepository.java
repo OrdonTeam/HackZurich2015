@@ -32,4 +32,10 @@ public class TestIdRepository {
     public void setCurrentTestID(String testId) {
         prefs.saveToPrefs(CURRENT_TEST_ID, testId, String.class);
     }
+
+    public void add(String testId) {
+        Set<String> ids = get();
+        ids.add(testId);
+        set(ids);
+    }
 }

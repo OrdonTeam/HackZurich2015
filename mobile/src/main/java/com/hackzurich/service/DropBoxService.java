@@ -7,6 +7,8 @@ import com.dropbox.client2.DropboxAPI;
 import com.dropbox.client2.android.AndroidAuthSession;
 import com.dropbox.client2.exception.DropboxException;
 import com.dropbox.client2.session.AppKeyPair;
+import com.google.gson.Gson;
+import com.hackzurich.model.Test;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -135,15 +137,17 @@ public class DropBoxService {
 
 
     public void download(Context context, Collection<DropboxAPI.Entry> entries) {
+        final TestDownloadService testDownloadService = new TestDownloadService(context);
         for (DropboxAPI.Entry entry : entries) {
             getSingleFile(context, entry)
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(Schedulers.newThread())
                     .subscribe(new Action1<String>() {
                         @Override
-                        public void call(String s) {
-                            Log.e("kasper", "asdasd" + s);
-
+                        public void call(String json) {
+                            Log.e("kasper", "asdasd" + json);
+                            Test test = new Gson().fromJson(json, Test.class);
+                            testDownloadService.add(test);
                         }
                     }, new Action1<Throwable>() {
                         @Override

@@ -2,6 +2,8 @@ package com.hackzurich;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -20,6 +22,8 @@ import butterknife.OnClick;
 
 public class HomeActivity extends Activity {
 
+    private TestIdRepository testIdRepository;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,8 +38,26 @@ public class HomeActivity extends Activity {
     protected void onResume() {
         super.onResume();
         Spinner spinner = (Spinner) findViewById(R.id.databaseChooseSpinner);
-        List<String> names = new ArrayList<>(new TestIdRepository(this).get());
+        testIdRepository = new TestIdRepository(HomeActivity.this);
+        final List<String> names = new ArrayList<>(testIdRepository.get());
         spinner.setAdapter(new ArrayAdapter<>(this, R.layout.spinner_text, names));
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                testIdRepository.setCurrentTestID(names.get(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        String currentTestId = testIdRepository.getCurrentTestId();
+        for (String id : names) {
+            if (id.equals(currentTestId)) {
+                spinner.setSelection(names.indexOf(id), false);
+            }
+        }
     }
 
     @OnClick(R.id.download)

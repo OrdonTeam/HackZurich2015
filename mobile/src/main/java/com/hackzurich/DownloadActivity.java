@@ -23,9 +23,6 @@ import rx.schedulers.Schedulers;
 
 public final class DownloadActivity extends Activity {
 
-
-    private Map<String, DropboxAPI.Entry> files;
-
     @Bind(R.id.filesList)
     ListView filesList;
 
@@ -61,7 +58,7 @@ public final class DownloadActivity extends Activity {
 
     @OnClick(R.id.download)
     public void download() {
-        dropBoxService.download(this, filesAdapter.getSelected() );
+        dropBoxService.download(this, filesAdapter.getSelected());
     }
 
     public static void start(Context context) {

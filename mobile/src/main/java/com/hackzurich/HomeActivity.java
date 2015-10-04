@@ -2,6 +2,7 @@ package com.hackzurich;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -18,7 +19,6 @@ import com.hackzurich.stub.STUB_PopulateDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import java.util.Map;
 
 import butterknife.ButterKnife;

@@ -148,7 +148,7 @@
                 android:layout_margin="@dimen/very_small_margin"
                 android:background="@drawable/button_next_background"
                 android:padding="4dp"
-                android:text="Next!"/>
+                android:text="Ok"/>
         </ViewFlipper>
     </LinearLayout>
 </ScrollView>

@@ -5,6 +5,7 @@ import android.preference.PreferenceManager;
 
 import com.google.gson.Gson;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class TestIdRepository {
@@ -18,7 +19,11 @@ public class TestIdRepository {
     }
 
     public Set<String> get() {
-        return prefs.getStringSet(TEST_ID_KEY);
+        Set<String> ids = prefs.getStringSet(TEST_ID_KEY);
+        if (ids == null) {
+            ids = new HashSet<>();
+        }
+        return ids;
     }
 
     public void set(Set<String> testIds) {

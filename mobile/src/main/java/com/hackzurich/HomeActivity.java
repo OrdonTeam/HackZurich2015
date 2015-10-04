@@ -14,7 +14,6 @@ import com.hackzurich.model.TestWrapper;
 import com.hackzurich.model.data.QuestionDataStatus;
 import com.hackzurich.model.stub.TestFactory;
 import com.hackzurich.service.RepositoryService;
-import com.hackzurich.stub.STUB_PopulateDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +31,7 @@ public class HomeActivity extends Activity {
         setContentView(R.layout.home_activity);
         ButterKnife.bind(this);
 
-        STUB_PopulateDatabase.populate(this);
+//        STUB_PopulateDatabase.populate(this);
         new Listener(this).start();
     }
 

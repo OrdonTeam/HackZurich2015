@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
 
 import com.dropbox.client2.DropboxAPI;
@@ -25,6 +26,8 @@ public final class DownloadActivity extends Activity {
 
     @Bind(R.id.filesList)
     ListView filesList;
+    @Bind(R.id.loader)
+    View loader;
 
     private FilesAdapter filesAdapter = new FilesAdapter();
     private DropBoxFiles dropBoxFiles;
@@ -58,7 +61,14 @@ public final class DownloadActivity extends Activity {
 
     @OnClick(R.id.download)
     public void download() {
-        dropBoxService.download(this, filesAdapter.getSelected());
+        loader.setVisibility(View.VISIBLE);
+        dropBoxService.download(this, filesAdapter.getSelected())
+                .subscribe(new Action1<Void>() {
+                    @Override
+                    public void call(Void aVoid) {
+                        finish();
+                    }
+                });
     }
 
     public static void start(Context context) {

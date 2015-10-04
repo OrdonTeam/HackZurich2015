@@ -1,6 +1,7 @@
 package com.hackzurich.service;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.dropbox.client2.DropboxAPI;
 import com.dropbox.client2.android.AndroidAuthSession;
@@ -16,11 +17,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 import rx.Observable;
 import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 public class DropBoxService {
 
@@ -129,4 +134,23 @@ public class DropBoxService {
     }
 
 
+    public void download(Context context, Collection<DropboxAPI.Entry> entries) {
+        for (DropboxAPI.Entry entry : entries) {
+            getSingleFile(context, entry)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeOn(Schedulers.newThread())
+                    .subscribe(new Action1<String>() {
+                        @Override
+                        public void call(String s) {
+                            Log.e("kasper", "asdasd" + s);
+
+                        }
+                    }, new Action1<Throwable>() {
+                        @Override
+                        public void call(Throwable throwable) {
+                            Log.e("kasper", "error na drugim" + throwable.getMessage());
+                        }
+                    });
+        }
+    }
 }

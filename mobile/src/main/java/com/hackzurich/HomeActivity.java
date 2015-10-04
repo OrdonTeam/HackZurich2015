@@ -10,6 +10,8 @@ import android.widget.Spinner;
 import com.hackzurich.connection.Listener;
 import com.hackzurich.connection.Sender;
 import com.hackzurich.database.TestIdRepository;
+import com.hackzurich.model.TestWrapper;
+import com.hackzurich.model.data.QuestionDataStatus;
 import com.hackzurich.model.stub.TestFactory;
 import com.hackzurich.service.RepositoryService;
 import com.hackzurich.stub.STUB_PopulateDatabase;
@@ -73,6 +75,8 @@ public class HomeActivity extends Activity {
 
     @OnClick(R.id.trigger_wear)
     public void onTriggerWear() {
-        new Sender(this, TestFactory.newQuestion()).send();
+        RepositoryService repositoryService = new RepositoryService(this);
+        TestWrapper testWrapper = repositoryService.getCurrentTestWrapper();
+        new Sender(this, testWrapper.getRandomQuestionFor(QuestionDataStatus.HARD)).send();
     }
 }

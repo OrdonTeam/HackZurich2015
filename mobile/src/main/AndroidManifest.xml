@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.hackzurich"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest
+    package="com.hackzurich"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
         android:allowBackup="true"
@@ -22,6 +23,7 @@
             android:name=".StartLearn"
             android:theme="@style/Transparent"/>
         <activity android:name=".LearnActivity"/>
+        <activity android:name=".DownloadActivity"/>
     </application>
 
 </manifest>

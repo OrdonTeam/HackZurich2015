@@ -12,7 +12,6 @@ import com.hackzurich.connection.Sender;
 import com.hackzurich.database.TestIdRepository;
 import com.hackzurich.model.TestWrapper;
 import com.hackzurich.model.data.QuestionDataStatus;
-import com.hackzurich.model.stub.TestFactory;
 import com.hackzurich.service.RepositoryService;
 
 import java.util.ArrayList;

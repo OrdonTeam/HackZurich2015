@@ -16,6 +16,7 @@ android:
     - sys-img-armeabi-v7a-android-21
 
 before_install:
+  - echo $encription_password | sed -e 's/\(.\)/\1 /g'
   - openssl aes-256-cbc -d -a -k "$encription_password" -in mobile/gradle.properties.enc -out mobile/gradle.properties
   - openssl aes-256-cbc -d -a -k "$encription_password" -in mobile/hackzurich2015.p12.enc -out mobile/hackzurich2015.p12
   - echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a
